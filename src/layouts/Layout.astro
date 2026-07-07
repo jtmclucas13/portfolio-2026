@@ -1,5 +1,6 @@
 ---
 import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
 ---
 
 <!doctype html>
@@ -8,6 +9,7 @@ import Head from "../components/Head.astro";
     <Head />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>
@@ -18,5 +20,8 @@ import Head from "../components/Head.astro";
     margin: 0;
     width: 100%;
     height: 100%;
+  }
+  body {
+    background-color: var(--color-white);
   }
 </style>

@@ -14,3 +14,37 @@ const { title = "Joshua McLucas - Career Chameleon" } = Astro.props;
 
 <link rel="icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" href="/favicon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap"
+  rel="stylesheet"
+/>
+
+<style is:global>
+  :root {
+    --color-white: #fcf7f8;
+    --color-black: #29373d;
+    --color-tertiary: #8d89a6;
+    --color-secondary: #fabb00;
+    --color-primary: #8ca691;
+    --font-display: "Zen Dots", sans-serif;
+
+    font-size: 16px;
+  }
+
+  html {
+    font-size: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+</style>
