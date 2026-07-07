@@ -1,5 +1,6 @@
 {
   "*.{js,ts,astro}": [
+    "npm run types:check",
     "npm run format:fix",
     "npm run lint"
   ]
