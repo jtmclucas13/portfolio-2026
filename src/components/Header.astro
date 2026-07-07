@@ -1,7 +1,23 @@
 <header>
   <h1>Joshua McLucas</h1>
-  <h2>Software Engineer</h2>
+  <h2 data-carousel>Software Engineer</h2>
 </header>
+
+<script>
+  const carousel = document.querySelector("[data-carousel]");
+  const titles = ["Software Engineer", "Theater Artist", "Career Chameleon"];
+  let index = 0;
+
+  function updateCarousel() {
+    if (!carousel) return;
+
+    carousel.textContent = titles[index] || "";
+    index = (index + 1) % titles.length;
+  }
+
+  updateCarousel();
+  setInterval(updateCarousel, 3000);
+</script>
 
 <style>
   header {
@@ -13,5 +29,20 @@
 
   h1 {
     margin-bottom: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    h2 {
+      animation: fadeIn 1.5s alternate infinite;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>
