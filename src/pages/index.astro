@@ -1,5 +1,34 @@
 ---
+import { Picture } from "astro:assets";
+import Flex from "../components/Flex.astro";
+import headshotImage from "../assets/mustache-headshot.jpg";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout />
+<Layout>
+  <Flex gap={2} grow>
+    <Picture src={headshotImage} alt="Headshot of Joshua McLucas" priority />
+  </Flex>
+  <aside class="quote">
+    "…a true Renaissance man." - Kip Nygren, Former President of Wyoming
+    Seminary
+  </aside>
+</Layout>
+
+<style>
+  picture img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .quote {
+    background-color: var(--color-black);
+    color: var(--color-secondary);
+    font-family: var(--font-cursive);
+    font-size: 3.5rem;
+    flex: 1 1 50%;
+    padding: 5rem;
+    text-align: center;
+  }
+</style>

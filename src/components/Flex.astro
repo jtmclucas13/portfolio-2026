@@ -1,0 +1,77 @@
+---
+interface Props {
+  align?: "start" | "center" | "end" | "stretch";
+  direction?: "row" | "column";
+  gap?: number;
+  grow?: boolean;
+  justify?: "start" | "center" | "end" | "between" | "around";
+}
+const {
+  align = "start",
+  direction = "row",
+  gap = 0,
+  grow,
+  justify = "start",
+} = Astro.props;
+---
+
+<div
+  class=`flex ${direction} align-${align} justify-${justify} ${grow ? "grow" : ""}`
+  style={{ gap: `${gap}rem` }}
+>
+  <slot />
+</div>
+
+<style>
+  .flex {
+    display: flex;
+  }
+
+  .grow {
+    flex: 1 1 0;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+
+  .align-start {
+    align-items: flex-start;
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .align-end {
+    align-items: flex-end;
+  }
+
+  .align-stretch {
+    align-items: stretch;
+  }
+
+  .justify-start {
+    justify-content: flex-start;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .justify-end {
+    justify-content: flex-end;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  .justify-around {
+    justify-content: space-around;
+  }
+</style>

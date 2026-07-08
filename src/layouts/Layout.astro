@@ -10,7 +10,9 @@ import Header from "../components/Header.astro";
   </head>
   <body>
     <Header />
-    <slot />
+    <div class="content">
+      <slot />
+    </div>
   </body>
 </html>
 
@@ -23,5 +25,10 @@ import Header from "../components/Header.astro";
   }
   body {
     background-color: var(--color-white);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
   }
 </style>
