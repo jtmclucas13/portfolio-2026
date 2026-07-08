@@ -1,6 +1,7 @@
 ---
 interface Props {
   align?: "start" | "center" | "end" | "stretch";
+  class?: string;
   direction?: "row" | "column";
   gap?: number;
   grow?: boolean;
@@ -8,16 +9,26 @@ interface Props {
 }
 const {
   align = "start",
+  class: className = "",
   direction = "row",
   gap = 0,
   grow,
   justify = "start",
+  ...rest
 } = Astro.props;
 ---
 
 <div
-  class=`flex ${direction} align-${align} justify-${justify} ${grow ? "grow" : ""}`
+  class:list={[
+    "flex",
+    className,
+    direction,
+    { grow: grow },
+    `align-${align}`,
+    `justify-${justify}`,
+  ]}
   style={{ gap: `${gap}rem` }}
+  {...rest}
 >
   <slot />
 </div>

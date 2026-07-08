@@ -1,13 +1,37 @@
 ---
 import { Picture } from "astro:assets";
+
+import LinkButton from "../components/LinkButton.astro";
 import Flex from "../components/Flex.astro";
 import headshotImage from "../assets/mustache-headshot.jpg";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Flex gap={2} grow>
-    <Picture src={headshotImage} alt="Headshot of Joshua McLucas" priority />
+  <Flex grow>
+    <Picture
+      pictureAttributes={{ style: "flex: 1 0 50%; min-width: 0;" }}
+      src={headshotImage}
+      alt="Headshot of Joshua McLucas"
+      priority
+    />
+    <Flex direction="column" class="intro">
+      <p>
+        Hi, I'm Josh! I've held lots of titles over my career. From theater to
+        software to whatever else I set my mind to, I devote myself to each
+        challenge with enthusiasm. Variety is the spice of life, after all!
+      </p>
+      <p>
+        Currently, I'm in the middle of a gap year to explore new opportunities
+        and recharge my creative batteries. I'm currently studying a breadth of
+        topics as far ranging as AI Safety, Urban Design, and Physiology.
+      </p>
+      <p>
+        I'm always open to chatting about new ideas and projects, so if you have
+        an idea for something you'd like to collaborate on, please reach out!
+      </p>
+      <LinkButton href="mailto:jtmclucas13@gmail.com"> Contact Me </LinkButton>
+    </Flex>
   </Flex>
   <aside class="quote">
     "…a true Renaissance man." - Kip Nygren, Former President of Wyoming
@@ -22,13 +46,26 @@ import Layout from "../layouts/Layout.astro";
     width: 100%;
   }
 
+  .intro {
+    background-color: var(--color-tertiary);
+    color: var(--color-black);
+    display: flex;
+    flex: 1 0 50%;
+    height: 100%;
+    padding: 2rem;
+
+    a {
+      align-self: center;
+    }
+  }
+
   .quote {
     background-color: var(--color-black);
     color: var(--color-secondary);
     font-family: var(--font-cursive);
     font-size: 3.5rem;
     flex: 1 1 50%;
-    padding: 5rem;
+    padding: 3rem;
     text-align: center;
   }
 </style>
