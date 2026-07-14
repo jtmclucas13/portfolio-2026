@@ -57,6 +57,210 @@ const data = [
     endDate: "Present",
   },
 ];
+
+// Extract years from start dates for timeline axis
+const years = [
+  ...new Set(data.map((d) => parseInt(d.startDate.split("-")[2]!))),
+];
+const minYear = Math.min(...years);
+const maxYear = 2027;
+
+// Generate gradient colors - vibrant palette cycling through the project colors
+const gradients = [
+  "linear-gradient(135deg, #8ca691 0%, #fabb00 100%)",
+  "linear-gradient(135deg, #fabb00 0%, #dcd9f4 100%)",
+  "linear-gradient(135deg, #dcd9f4 0%, #8ca691 100%)",
+  "linear-gradient(135deg, #8ca691 0%, #dcd9f4 100%)",
+  "linear-gradient(135deg, #dcd9f4 0%, #fabb00 100%)",
+  "linear-gradient(135deg, #fabb00 0%, #8ca691 100%)",
+  "linear-gradient(135deg, #8ca691 0%, #dcd9f4 100%)",
+  "linear-gradient(135deg, #dcd9f4 0%, #29373d 100%)",
+];
+
+// Position along timeline (0-1 scale)
+const getPosition = (dateStr: string) => {
+  const year = parseInt(dateStr.split("-")[2]!);
+  return ((year - minYear) / (maxYear - minYear)) * 100;
+};
+
+// Get position for the middle of each entry's range
+const getEntryPosition = (entry: (typeof data)[0]) => {
+  const startYear = parseInt(entry.startDate.split("-")[2]!);
+  const endYear =
+    entry.endDate === "Present" ? 2027 : parseInt(entry.endDate.split("-")[2]!);
+  const midYear = (startYear + endYear) / 2;
+  return ((midYear - minYear) / (maxYear - minYear)) * 100;
+};
 ---
 
-<div>Implement timeline here</div>
+<section class="timeline">
+  <div class="timeline-container">
+    {/* Timeline axis */}
+    <div class="timeline-axis">
+      {
+        years.map((year) => (
+          <span
+            class="timeline-year"
+            style={`left: ${getPosition(String(year))}%;`}
+          >
+            {year}
+          </span>
+        ))
+      }
+    </div>
+
+    {/* Timeline line */}
+    <div class="timeline-line"></div>
+
+    {/* Timeline entries */}
+    {
+      data.map((entry, index) => {
+        const isAbove = index % 2 === 0;
+        const position = getEntryPosition(entry);
+        const gradient = gradients[index];
+        return (
+          <div
+            class={`timeline-entry ${isAbove ? "above" : "below"}`}
+            style={`--position: ${position}%`}
+          >
+            <div class="timeline-marker" style={`background: ${gradient}`} />
+            <div class="timeline-content" style={`background: ${gradient}`}>
+              <h3 class="timeline-headline">{entry.headline}</h3>
+              <p class="timeline-description">{entry.description}</p>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style is:global>
+  .timeline {
+    padding: 4rem 2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+  }
+
+  .timeline-container {
+    position: relative;
+    min-width: 1200px;
+    padding: 3rem 4rem 4rem;
+  }
+
+  /* Timeline axis (year labels) */
+  .timeline-axis {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .timeline-year {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-black);
+    opacity: 0.4;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  /* Horizontal line */
+  .timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 4rem;
+    right: 4rem;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary),
+      var(--color-tertiary),
+      var(--color-primary)
+    );
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+
+  /* Individual entry */
+  .timeline-entry {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+  }
+
+  .timeline-entry.above {
+    flex-direction: column-reverse;
+  }
+
+  .timeline-entry.below {
+    top: calc(50% + 2rem);
+  }
+
+  /* Marker dot */
+  .timeline-marker {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid var(--color-white);
+    box-shadow:
+      0 0 0 4px var(--color-black),
+      0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .timeline-entry.above .timeline-marker {
+    margin-bottom: 2rem;
+  }
+
+  .timeline-entry.below .timeline-marker {
+    margin-top: 2rem;
+  }
+
+  /* Content card */
+  .timeline-content {
+    background: var(--color-white);
+    border: 3px solid var(--color-black);
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 6px 6px 0 var(--color-black);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .timeline-content:hover {
+    transform: scale(1.03);
+    box-shadow: 8px 8px 0 var(--color-black);
+  }
+
+  .timeline-headline {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-black);
+  }
+
+  .timeline-description {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-black);
+    opacity: 0.85;
+    margin: 0;
+  }
+</style>
