@@ -79,7 +79,7 @@ const gradients = [
   "linear-gradient(135deg, #dcd9f4 0%, #29373d 100%)",
 ];
 
-// Get position for the middle of each entry's range
+// Get base position for each entry's range
 const getEntryPosition = (entry: (typeof data)[0]) => {
   const startYear = getStartDateNumericalYearRepresentation(entry);
   return ((startYear - minYear) / (maxYear - minYear)) * 100;
@@ -88,29 +88,27 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
 
 <section class="timeline">
   <div class="timeline-container">
-    <div class="timeline-axis">
-      {
-        years.map((year) => (
-          <span
-            class="timeline-year"
-            style={`left: ${(((year - minYear) / (maxYear - minYear)) * 100).toFixed(2)}%;`}
-          >
-            {year}
-          </span>
-        ))
-      }
-    </div>
-
     <div class="timeline-line"></div>
-
     {
       data.map((entry, index) => {
         const isAbove = index % 2 === 0;
-        const position = getEntryPosition(entry);
+
+        const basePosition = getEntryPosition(entry);
+        const isFirst = index === 0;
+        const isLast = index === data.length - 1;
+        let position = `${basePosition}%`;
+        if (isFirst) {
+          position = `calc(${basePosition}% + 100px)`;
+        } else if (isLast) {
+          position = `calc(${basePosition}% - 100px)`;
+        }
+
         const gradient = gradients[index];
         return (
-          <div class="timeline-entry" style={`--position: ${position}%`}>
-            <div class="timeline-marker" style={`background: ${gradient}`} />
+          <div class="timeline-entry" style={`--position: ${position}`}>
+            <div class="timeline-marker" style={`background: ${gradient}`}>
+              {years[0]}
+            </div>
             <div
               class={`timeline-content ${isAbove ? "above" : "below"}`}
               style={`background: ${gradient}`}
@@ -127,7 +125,10 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
 
 <style>
   .timeline {
-    padding: 4rem 2rem;
+    --axis-height: 4px;
+    --marker-height: 47px;
+
+    padding: 4rem 0;
     overflow-x: auto;
     width: 100%;
     background: linear-gradient(
@@ -142,40 +143,21 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     position: relative;
     min-width: 2000px;
     height: 500px;
-    padding: 3rem 4rem 4rem;
-  }
-
-  .timeline-axis {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2rem;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    pointer-events: none;
-  }
-
-  .timeline-year {
-    font-family: var(--font-display);
-    font-size: 0.875rem;
-    color: var(--color-black);
-    opacity: 0.4;
-    position: absolute;
-    transform: translateX(-50%);
+    left: 4rem;
   }
 
   .timeline-line {
     position: absolute;
     top: 50%;
-    left: 4rem;
-    right: 4rem;
-    height: 4px;
+    left: -100px;
+    right: 0;
+    height: var(--axis-height);
     background: var(--color-black);
     transform: translateY(-50%);
     border-radius: 2px;
+    width: calc(
+      100% + 200px
+    ); /* extend 100px on the left, 100px on the right to go beyond the browser boundary */
   }
 
   .timeline-entry {
@@ -190,20 +172,27 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
   }
 
   .timeline-marker {
-    width: 24px;
-    height: 24px;
+    align-items: center;
+    color: var(--color-black);
+    display: flex;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
     border-radius: 50%;
     border: 3px solid var(--color-white);
     box-shadow:
       0 0 0 4px var(--color-black),
       0 4px 12px rgba(0, 0, 0, 0.15);
+    height: var(--marker-height);
+    padding: 12px;
     position: relative;
     z-index: 2;
     flex-shrink: 0;
-    top: -12px;
+    top: calc((var(--marker-height) / 2) * -1);
   }
 
   .timeline-content {
+    --content-gap: 24px;
+
     background: var(--color-white);
     border: 3px solid var(--color-black);
     border-radius: 12px;
@@ -215,7 +204,7 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
       box-shadow 0.2s ease;
 
     &.above {
-      bottom: calc(25px + 24px);
+      bottom: calc(var(--marker-height) * 2);
       transform: translateY(-100%);
     }
 
