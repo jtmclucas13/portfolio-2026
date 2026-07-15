@@ -5,65 +5,67 @@ const data = [
       "I grow up in rural south-central Pennsylvania, where I discover a love for video games, playing guitar, and creative writing.",
     headline: "The story begins",
     startDate: "07-27-1993",
-    endDate: "08-20-2007",
   },
   {
     description:
       "I attend Wyoming Seminary, a private college preparatory school in Kingston, PA, on full scholarship. I am awarded the Outstanding Graduate, Alumni Service Award, and the Levi Sprague Fellowship for my outstanding academic and community contributions.",
     headline: "Discovering myself at boarding school",
     startDate: "08-20-2007",
-    endDate: "06-01-2011",
   },
   {
     description:
       "I attend Swarthmore College, where I graduate with High Honors in Theater. I also study Computer Science and Psychology, thrilled to be able to explore such diverse subjects.",
     headline: '"The best years of your life"',
     startDate: "09-01-2011",
-    endDate: "06-01-2015",
   },
   {
     description:
       "I found [redacted] theater company, where I work as a producer, director, and actor, responsible for creating multiple productions and festivals in Philadelphia.",
     headline: "Founding a theater company",
     startDate: "06-01-2014",
-    endDate: "08-01-2018",
   },
   {
     description:
       "My software engineering career thrives, growing to a Staff-level frontend engineer by working with a variety of fast-moving startups.",
     headline: "Making a life of software engineering",
     startDate: "09-01-2015",
-    endDate: "06-02-2026",
   },
   {
     description:
       "I re-focus my creative energy on music - singing and playing guitar in a pop-punk cover band and starting a streaming review channel called The Pulse of Music.",
     headline: "Rockin' out",
     startDate: "06-02-2020",
-    endDate: "06-02-2025",
   },
   {
     description:
       "I take a gap year to study a breadth of new topics and recharge my creative batteries.",
     headline: "Exploring new horizons",
     startDate: "06-02-2026",
-    endDate: "06-02-2027",
   },
   {
     description:
       "I am currently exploring new opportunities and projects, eager to apply my diverse skills and experiences to new challenges.",
     headline: "What's next?",
-    startDate: "06-02-2027",
-    endDate: "Present",
+    startDate: "Present",
   },
 ];
 
+const getStartDateNumericalYearRepresentation = (d: (typeof data)[0]) =>
+  d.startDate === "Present"
+    ? currentYear
+    : parseInt(d.startDate.split("-")[2]!);
+
 // Extract years from start dates for timeline axis
+const currentYear = new Date().getFullYear();
+const maxYear = currentYear + 1;
 const years = [
-  ...new Set(data.map((d) => parseInt(d.startDate.split("-")[2]!))),
+  ...new Set([
+    1993,
+    ...data.map(getStartDateNumericalYearRepresentation),
+    maxYear,
+  ]),
 ];
 const minYear = Math.min(...years);
-const maxYear = 2027;
 
 // Generate gradient colors - vibrant palette cycling through the project colors
 const gradients = [
@@ -77,31 +79,21 @@ const gradients = [
   "linear-gradient(135deg, #dcd9f4 0%, #29373d 100%)",
 ];
 
-// Position along timeline (0-1 scale)
-const getPosition = (dateStr: string) => {
-  const year = parseInt(dateStr.split("-")[2]!);
-  return ((year - minYear) / (maxYear - minYear)) * 100;
-};
-
 // Get position for the middle of each entry's range
 const getEntryPosition = (entry: (typeof data)[0]) => {
-  const startYear = parseInt(entry.startDate.split("-")[2]!);
-  const endYear =
-    entry.endDate === "Present" ? 2027 : parseInt(entry.endDate.split("-")[2]!);
-  const midYear = (startYear + endYear) / 2;
-  return ((midYear - minYear) / (maxYear - minYear)) * 100;
+  const startYear = getStartDateNumericalYearRepresentation(entry);
+  return ((startYear - minYear) / (maxYear - minYear)) * 100;
 };
 ---
 
 <section class="timeline">
   <div class="timeline-container">
-    {/* Timeline axis */}
     <div class="timeline-axis">
       {
         years.map((year) => (
           <span
             class="timeline-year"
-            style={`left: ${((year - minYear) / (maxYear - minYear) * 100).toFixed(2)}%;`}
+            style={`left: ${(((year - minYear) / (maxYear - minYear)) * 100).toFixed(2)}%;`}
           >
             {year}
           </span>
@@ -109,22 +101,20 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
       }
     </div>
 
-    {/* Timeline line */}
     <div class="timeline-line"></div>
 
-    {/* Timeline entries */}
     {
       data.map((entry, index) => {
         const isAbove = index % 2 === 0;
         const position = getEntryPosition(entry);
         const gradient = gradients[index];
         return (
-          <div
-            class={`timeline-entry ${isAbove ? "above" : "below"}`}
-            style={`--position: ${position}%`}
-          >
+          <div class="timeline-entry" style={`--position: ${position}%`}>
             <div class="timeline-marker" style={`background: ${gradient}`} />
-            <div class="timeline-content" style={`background: ${gradient}`}>
+            <div
+              class={`timeline-content ${isAbove ? "above" : "below"}`}
+              style={`background: ${gradient}`}
+            >
               <h3 class="timeline-headline">{entry.headline}</h3>
               <p class="timeline-description">{entry.description}</p>
             </div>
@@ -135,22 +125,26 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
   </div>
 </section>
 
-<style is:global>
+<style>
   .timeline {
     padding: 4rem 2rem;
     overflow-x: auto;
     width: 100%;
-    background: linear-gradient(to right, var(--color-tertiary), var(--color-white), var(--color-primary));
+    background: linear-gradient(
+      to right,
+      var(--color-tertiary),
+      var(--color-white),
+      var(--color-primary)
+    );
   }
 
   .timeline-container {
     position: relative;
     min-width: 2000px;
-    height: 100%;
+    height: 500px;
     padding: 3rem 4rem 4rem;
   }
 
-  /* Timeline axis (year labels) */
   .timeline-axis {
     position: absolute;
     top: 50%;
@@ -173,7 +167,6 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     transform: translateX(-50%);
   }
 
-  /* Horizontal line */
   .timeline-line {
     position: absolute;
     top: 50%;
@@ -185,7 +178,6 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     border-radius: 2px;
   }
 
-  /* Individual entry */
   .timeline-entry {
     position: absolute;
     top: 50%;
@@ -197,16 +189,6 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     width: 280px;
   }
 
-  .timeline-entry.above {
-    flex-direction: column-reverse;
-    top: calc(50% - 2rem);
-  }
-
-  .timeline-entry.below {
-    top: calc(50% + 2rem);
-  }
-
-  /* Marker dot */
   .timeline-marker {
     width: 24px;
     height: 24px;
@@ -218,26 +200,28 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     position: relative;
     z-index: 2;
     flex-shrink: 0;
+    top: -12px;
   }
 
-  .timeline-entry.above .timeline-marker {
-    margin-bottom: 2rem;
-  }
-
-  .timeline-entry.below .timeline-marker {
-    margin-top: 2rem;
-  }
-
-  /* Content card */
   .timeline-content {
     background: var(--color-white);
     border: 3px solid var(--color-black);
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 6px 6px 0 var(--color-black);
+    position: relative;
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease;
+
+    &.above {
+      bottom: calc(25px + 24px);
+      transform: translateY(-100%);
+    }
+
+    &.below {
+      top: 0px;
+    }
   }
 
   .timeline-content:hover {
