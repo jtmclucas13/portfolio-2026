@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import headshotImage from "../assets/mustache-headshot.jpg";
+
 const data = [
   {
     description:
@@ -87,8 +90,11 @@ const buildGradient = (index: number) => {
               class={`timeline-content ${isAbove ? "above" : "below"}`}
               style={`background: ${gradient}`}
             >
-              <h3 class="timeline-headline">{entry.headline}</h3>
-              <p class="timeline-description">{entry.description}</p>
+              <Image src={headshotImage} alt="test" width="100" />
+              <div class="timeline-text">
+                <h3 class="timeline-headline">{entry.headline}</h3>
+                <p class="timeline-description">{entry.description}</p>
+              </div>
             </div>
           </div>
         );
@@ -102,8 +108,14 @@ const buildGradient = (index: number) => {
     --axis-height: 4px;
     --marker-height: 47px;
 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     overflow-x: auto;
     width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .timeline-container {
@@ -125,7 +137,7 @@ const buildGradient = (index: number) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
+    width: 400px;
   }
 
   .timeline-line {
@@ -157,6 +169,8 @@ const buildGradient = (index: number) => {
     border-radius: 12px;
     padding: 1.25rem;
     box-shadow: 6px 6px 0 var(--color-black);
+    display: flex;
+    gap: 1rem;
     position: relative;
     transition:
       scale 0.2s ease,
