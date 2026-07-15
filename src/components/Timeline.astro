@@ -57,7 +57,10 @@ const buildGradient = (index: number) => {
   const colorOne = colors[colorOneIndex];
 
   const colorTwoIndex = Math.floor((index + 1) / colors.length);
-  const colorTwo = colors[colorTwoIndex];
+  const colorTwo =
+    colorTwoIndex > colors.length - 1
+      ? colors[colors.length - 1]
+      : colors[colorTwoIndex];
 
   return `linear-gradient(135deg, var(${colorOne}) 0%, var(${colorTwo}) 100%)`;
 };
