@@ -23,3 +23,6 @@ pnpm-debug.log*
 # IDE setting folders
 .idea/
 .vscode/
+
+# Agent specific files
+.pi/
