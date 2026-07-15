@@ -4,68 +4,51 @@ const data = [
     description:
       "I grow up in rural south-central Pennsylvania, where I discover a love for video games, playing guitar, and creative writing.",
     headline: "The story begins",
-    startDate: "07-27-1993",
+    year: "1993",
   },
   {
     description:
       "I attend Wyoming Seminary, a private college preparatory school in Kingston, PA, on full scholarship. I am awarded the Outstanding Graduate, Alumni Service Award, and the Levi Sprague Fellowship for my outstanding academic and community contributions.",
     headline: "Discovering myself at boarding school",
-    startDate: "08-20-2007",
+    year: "2007",
   },
   {
     description:
       "I attend Swarthmore College, where I graduate with High Honors in Theater. I also study Computer Science and Psychology, thrilled to be able to explore such diverse subjects.",
     headline: '"The best years of your life"',
-    startDate: "09-01-2011",
+    year: "2011",
   },
   {
     description:
       "I found [redacted] theater company, where I work as a producer, director, and actor, responsible for creating multiple productions and festivals in Philadelphia.",
     headline: "Founding a theater company",
-    startDate: "06-01-2014",
+    year: "2014",
   },
   {
     description:
       "My software engineering career thrives, growing to a Staff-level frontend engineer by working with a variety of fast-moving startups.",
     headline: "Making a life of software engineering",
-    startDate: "09-01-2015",
+    year: "2015",
   },
   {
     description:
       "I re-focus my creative energy on music - singing and playing guitar in a pop-punk cover band and starting a streaming review channel called The Pulse of Music.",
     headline: "Rockin' out",
-    startDate: "06-02-2020",
+    year: "2020",
   },
   {
     description:
       "I take a gap year to study a breadth of new topics and recharge my creative batteries.",
     headline: "Exploring new horizons",
-    startDate: "06-02-2026",
+    year: "2026",
   },
   {
     description:
       "I am currently exploring new opportunities and projects, eager to apply my diverse skills and experiences to new challenges.",
     headline: "What's next?",
-    startDate: "Present",
+    year: "Present",
   },
 ];
-
-const getStartDateNumericalYearRepresentation = (d: (typeof data)[0]) =>
-  d.startDate === "Present"
-    ? currentYear
-    : parseInt(d.startDate.split("-")[2]!);
-
-// Extract years from start dates for timeline axis
-const currentYear = new Date().getFullYear();
-const maxYear = currentYear + 1;
-const years = [
-  ...new Set([
-    1993,
-    ...data.map(getStartDateNumericalYearRepresentation),
-    maxYear,
-  ]),
-];
-const minYear = Math.min(...years);
 
 // Generate gradient colors - vibrant palette cycling through the project colors
 const gradients = [
@@ -78,12 +61,6 @@ const gradients = [
   "linear-gradient(135deg, #8ca691 0%, #dcd9f4 100%)",
   "linear-gradient(135deg, #dcd9f4 0%, #29373d 100%)",
 ];
-
-// Get base position for each entry's range
-const getEntryPosition = (entry: (typeof data)[0]) => {
-  const startYear = getStartDateNumericalYearRepresentation(entry);
-  return ((startYear - minYear) / (maxYear - minYear)) * 100;
-};
 ---
 
 <section class="timeline">
@@ -92,22 +69,13 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     {
       data.map((entry, index) => {
         const isAbove = index % 2 === 0;
-
-        const basePosition = getEntryPosition(entry);
-        const isFirst = index === 0;
-        const isLast = index === data.length - 1;
-        let position = `${basePosition}%`;
-        if (isFirst) {
-          position = `calc(${basePosition}% + 100px)`;
-        } else if (isLast) {
-          position = `calc(${basePosition}% - 100px)`;
-        }
-
+        const position = (index * 100) / data.length + index * 10; // ~5% added per gap
         const gradient = gradients[index];
+
         return (
-          <div class="timeline-entry" style={`--position: ${position}`}>
+          <div class="timeline-entry" style={`--position: ${position}%`}>
             <div class="timeline-marker" style={`background: ${gradient}`}>
-              {years[0]}
+              {entry.year}
             </div>
             <div
               class={`timeline-content ${isAbove ? "above" : "below"}`}
@@ -143,13 +111,12 @@ const getEntryPosition = (entry: (typeof data)[0]) => {
     position: relative;
     min-width: 2000px;
     height: 500px;
-    left: 4rem;
+    left: 200px;
   }
 
   .timeline-line {
     position: absolute;
     top: 50%;
-    left: -100px;
     right: 0;
     height: var(--axis-height);
     background: var(--color-black);
