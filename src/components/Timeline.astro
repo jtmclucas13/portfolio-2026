@@ -50,29 +50,32 @@ const data = [
   },
 ];
 
-// Generate gradient colors - vibrant palette cycling through the project colors
-const gradients = [
-  "linear-gradient(135deg, #8ca691 0%, #fabb00 100%)",
-  "linear-gradient(135deg, #fabb00 0%, #dcd9f4 100%)",
-  "linear-gradient(135deg, #dcd9f4 0%, #8ca691 100%)",
-  "linear-gradient(135deg, #8ca691 0%, #dcd9f4 100%)",
-  "linear-gradient(135deg, #dcd9f4 0%, #fabb00 100%)",
-  "linear-gradient(135deg, #fabb00 0%, #8ca691 100%)",
-  "linear-gradient(135deg, #8ca691 0%, #dcd9f4 100%)",
-  "linear-gradient(135deg, #dcd9f4 0%, #29373d 100%)",
-];
+const buildGradient = (index: number) => {
+  const colors = ["--color-secondary", "--color-white", "--color-tertiary"];
+
+  const colorOneIndex = Math.floor(index / colors.length);
+  const colorOne = colors[colorOneIndex];
+
+  const colorTwoIndex = Math.floor((index + 1) / colors.length);
+  const colorTwo = colors[colorTwoIndex];
+
+  return `linear-gradient(135deg, var(${colorOne}) 0%, var(${colorTwo}) 100%)`;
+};
 ---
 
 <section class="timeline">
-  <div class="timeline-container">
+  <div class="timeline-container" style={`min-width: ${data.length * 520}px`}>
     {
       data.map((entry, index) => {
         const isAbove = index % 2 === 0;
-        const position = (index * 100) / data.length + index * 10; // ~5% added per gap
-        const gradient = gradients[index];
+        const position = (index * 100) / data.length;
+        const gradient = buildGradient(index);
 
         return (
-          <div class="timeline-entry" style={`--position: ${position}%`}>
+          <div
+            class="timeline-entry"
+            style={`--position: calc(${position}% + 240px)`}
+          >
             <div class="timeline-line" />
             <div class="timeline-marker" style={`background: ${gradient}`}>
               {entry.year}
@@ -96,22 +99,19 @@ const gradients = [
     --axis-height: 4px;
     --marker-height: 47px;
 
-    padding: 4rem 0;
     overflow-x: auto;
     width: 100%;
-    background: linear-gradient(
-      to right,
-      var(--color-tertiary),
-      var(--color-white),
-      var(--color-primary)
-    );
   }
 
   .timeline-container {
     position: relative;
-    min-width: 2000px;
-    height: 500px;
-    left: 200px;
+    height: 700px;
+    background: linear-gradient(
+      to right,
+      var(--color-tertiary),
+      var(--color-white),
+      var(--color-secondary)
+    );
   }
 
   .timeline-entry {
@@ -138,10 +138,7 @@ const gradients = [
     font-family: var(--font-display);
     font-size: 0.875rem;
     border-radius: 50%;
-    border: 3px solid var(--color-white);
-    box-shadow:
-      0 0 0 4px var(--color-black),
-      0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--color-black);
     height: var(--marker-height);
     padding: 12px;
     position: relative;
@@ -153,7 +150,6 @@ const gradients = [
   .timeline-content {
     --content-gap: 24px;
 
-    background: var(--color-white);
     border: 3px solid var(--color-black);
     border-radius: 12px;
     padding: 1.25rem;
