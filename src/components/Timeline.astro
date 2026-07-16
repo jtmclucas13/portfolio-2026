@@ -84,6 +84,22 @@ const buildGradient = (index: number) => {
 };
 ---
 
+<script>
+  const scrollContainer = document.querySelector(".timeline-scroll-container");
+  const rightButton = document.querySelector(".scroll-right-button");
+  const leftButton = document.querySelector(".scroll-left-button");
+
+  const scrollRight = () => {
+    scrollContainer?.scrollBy({ left: 500, behavior: "smooth" });
+  };
+  const scrollLeft = () => {
+    scrollContainer?.scrollBy({ left: -500, behavior: "smooth" });
+  };
+
+  rightButton?.addEventListener("click", scrollRight);
+  leftButton?.addEventListener("click", scrollLeft);
+</script>
+
 <section class="timeline">
   <h2 class="timeline-title">A Brief Timeline</h2>
   <div class="timeline-scroll-container">
@@ -124,6 +140,8 @@ const buildGradient = (index: number) => {
       }
     </div>
   </div>
+  <button class="scroll-left-button">arrow_back</button>
+  <button class="scroll-right-button">arrow_forward</button>
 </section>
 
 <style>
@@ -242,5 +260,36 @@ const buildGradient = (index: number) => {
     color: var(--color-black);
     opacity: 0.85;
     margin: 0;
+  }
+
+  .scroll-left-button {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  .scroll-right-button {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  button {
+    background: var(--color-white);
+    border: 3px solid black;
+    border-radius: 50%;
+    color: var(--color-black);
+    cursor: pointer;
+    font-family: var(--font-icon);
+    font-size: 32px;
+    z-index: 1;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-white), #000 15%);
+    }
+
+    &:active {
+      background-color: color-mix(in srgb, var(--color-white), #000 30%);
+    }
   }
 </style>
