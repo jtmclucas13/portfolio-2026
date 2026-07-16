@@ -1,54 +1,69 @@
 ---
 import { Image } from "astro:assets";
-import headshotImage from "../assets/mustache-headshot.jpg";
+
+import champagneToast from "../assets/champagne-toast.jpeg";
+import dublinByLamplight from "../assets/dublin-by-lamplight.png";
+import jesterHat from "../assets/jester-hat.jpeg";
+import mouthbreathers from "../assets/mouthbreathers.jpeg";
+import semPortrait from "../assets/sem-portrait.jpeg";
+import softwareWork from "../assets/software-work.jpeg";
+import swarthmoreGraduation from "../assets/swarthmore-graduation.jpg";
 
 const data = [
   {
     description:
       "I grow up in rural south-central Pennsylvania, where I discover a love for video games, playing guitar, and creative writing.",
     headline: "The story begins",
+    image: jesterHat,
     year: "1993",
   },
   {
     description:
       "I attend Wyoming Seminary, a private college preparatory school in Kingston, PA, on full scholarship. I am awarded the Outstanding Graduate, Alumni Service Award, and the Levi Sprague Fellowship for my outstanding academic and community contributions.",
     headline: "Discovering myself at boarding school",
+    image: semPortrait,
     year: "2007",
   },
   {
     description:
       "I attend Swarthmore College, where I graduate with High Honors in Theater. I also study Computer Science and Psychology, thrilled to be able to explore such diverse subjects.",
     headline: '"The best years of your life"',
+    image: swarthmoreGraduation,
     year: "2011",
   },
   {
     description:
       "I found [redacted] theater company, where I work as a producer, director, and actor, responsible for creating multiple productions and festivals in Philadelphia.",
     headline: "Founding a theater company",
+    image: dublinByLamplight,
     year: "2014",
   },
   {
     description:
       "My software engineering career thrives, growing to a Staff-level frontend engineer by working with a variety of fast-moving startups.",
     headline: "Making a life of software engineering",
+    image: softwareWork,
     year: "2015",
   },
   {
     description:
       "I re-focus my creative energy on music - singing and playing guitar in a pop-punk cover band and starting a streaming review channel called The Pulse of Music.",
     headline: "Rockin' out",
+    image: mouthbreathers,
     year: "2020",
   },
   {
     description:
       "I take a gap year to study a breadth of new topics and recharge my creative batteries.",
     headline: "Exploring new horizons",
+    image: champagneToast,
     year: "2026",
   },
   {
     description:
       "I am currently exploring new opportunities and projects, eager to apply my diverse skills and experiences to new challenges.",
     headline: "What's next?",
+    image: null,
     year: "Present",
   },
 ];
@@ -90,7 +105,9 @@ const buildGradient = (index: number) => {
               class={`timeline-content ${isAbove ? "above" : "below"}`}
               style={`background: ${gradient}`}
             >
-              <Image src={headshotImage} alt="test" width="100" />
+              {entry.image && (
+                <Image src={entry.image} alt="test" width="100" />
+              )}
               <div class="timeline-text">
                 <h3 class="timeline-headline">{entry.headline}</h3>
                 <p class="timeline-description">{entry.description}</p>
@@ -187,7 +204,7 @@ const buildGradient = (index: number) => {
   }
 
   .timeline-content:hover {
-    scale: 1.03;
+    scale: 1.25;
     box-shadow: 8px 8px 0 var(--color-black);
   }
 
