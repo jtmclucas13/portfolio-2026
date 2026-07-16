@@ -85,38 +85,44 @@ const buildGradient = (index: number) => {
 ---
 
 <section class="timeline">
-  <div class="timeline-container" style={`min-width: ${data.length * 520}px`}>
-    {
-      data.map((entry, index) => {
-        const isAbove = index % 2 === 0;
-        const position = (index * 100) / data.length;
-        const gradient = buildGradient(index);
+  <h2 class="timeline-title">A Brief Timeline</h2>
+  <div class="timeline-scroll-container">
+    <div
+      class="timeline-content-container"
+      style={`min-width: ${data.length * 520}px`}
+    >
+      {
+        data.map((entry, index) => {
+          const isAbove = index % 2 === 0;
+          const position = (index * 100) / data.length;
+          const gradient = buildGradient(index);
 
-        return (
-          <div
-            class="timeline-entry"
-            style={`--position: calc(${position}% + 240px)`}
-          >
-            <div class="timeline-line" />
-            <div class="timeline-marker" style={`background: ${gradient}`}>
-              {entry.year}
-            </div>
+          return (
             <div
-              class={`timeline-content ${isAbove ? "above" : "below"}`}
-              style={`background: ${gradient}`}
+              class="timeline-entry"
+              style={`--position: calc(${position}% + 240px)`}
             >
-              {entry.image && (
-                <Image src={entry.image} alt="test" width="100" />
-              )}
-              <div class="timeline-text">
-                <h3 class="timeline-headline">{entry.headline}</h3>
-                <p class="timeline-description">{entry.description}</p>
+              <div class="timeline-line" />
+              <div class="timeline-marker" style={`background: ${gradient}`}>
+                {entry.year}
+              </div>
+              <div
+                class={`timeline-content ${isAbove ? "above" : "below"}`}
+                style={`background: ${gradient}`}
+              >
+                {entry.image && (
+                  <Image src={entry.image} alt="test" width="100" />
+                )}
+                <div class="timeline-text">
+                  <h3 class="timeline-headline">{entry.headline}</h3>
+                  <p class="timeline-description">{entry.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })
-    }
+          );
+        })
+      }
+    </div>
   </div>
 </section>
 
@@ -125,17 +131,30 @@ const buildGradient = (index: number) => {
     --axis-height: 4px;
     --marker-height: 47px;
 
+    position: relative;
+    width: 100%;
+  }
+
+  .timeline-title {
+    position: absolute;
+    left: 50%;
+    top: 1rem;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .timeline-scroll-container {
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow-x: auto;
-    width: 100%;
+    position: relative;
 
     &::-webkit-scrollbar {
       display: none;
     }
   }
 
-  .timeline-container {
+  .timeline-content-container {
     position: relative;
     height: 700px;
     background: linear-gradient(
@@ -155,6 +174,7 @@ const buildGradient = (index: number) => {
     flex-direction: column;
     align-items: center;
     width: 400px;
+    z-index: 1;
   }
 
   .timeline-line {
