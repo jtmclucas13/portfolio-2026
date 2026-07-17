@@ -6,11 +6,18 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.googleicons(),
-      name: "Material Icons",
+      name: "Material Icons Outlined",
       cssVariable: "--font-icon",
       options: {
         experimental: {
-          glyphs: ["arrow-back", "arrow-forward"],
+          glyphs: [
+            "arrow_back",
+            "arrow_forward",
+            "forum",
+            "check_circle",
+            "diversity_1",
+            "workspace_premium",
+          ],
         },
       },
     },

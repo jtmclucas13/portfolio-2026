@@ -6,6 +6,7 @@ import Flex from "../components/Flex.astro";
 import headshotImage from "../assets/mustache-headshot.jpg";
 import Layout from "../layouts/Layout.astro";
 import Timeline from "../components/Timeline.astro";
+import BoxItem from "../components/BoxItem.astro";
 ---
 
 <Layout>
@@ -41,6 +42,31 @@ import Timeline from "../components/Timeline.astro";
     </div>
   </aside>
   <Timeline />
+  <section class="values">
+    <h2>My Values</h2>
+    <div class="values-list">
+      <BoxItem
+        icon="check_circle"
+        subtitle="Following through on your commitments shows others that you're trustworthy and dependable."
+        title="Do what you say you'll do"
+      />
+      <BoxItem
+        icon="diversity_1"
+        subtitle="Everyone has a unique perspective, background, and experience that makes them who they are. Understand the person, and you'll understand the world a bit better."
+        title="Lead with empathy"
+      />
+      <BoxItem
+        icon="workspace_premium"
+        subtitle="Don't be afraid to say no, because a yes means it's worth your full attention. If you can't fully commit, don't commit at all."
+        title="Anything worth doing is worth doing well"
+      />
+      <BoxItem
+        icon="forum"
+        subtitle="Nobody is a mind-reader, and circumstances change constantly. Be vulnerable enough to say what isn't being said, and to write down what needs to be remembered."
+        title="Communication is key"
+      />
+    </div>
+  </section>
 </Layout>
 
 <style>
@@ -80,5 +106,19 @@ import Timeline from "../components/Timeline.astro";
       padding: 3rem;
       width: 100%;
     }
+  }
+
+  .values {
+    padding: 2rem 4rem;
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .values-list {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1.25rem;
   }
 </style>

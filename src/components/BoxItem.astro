@@ -1,0 +1,46 @@
+---
+interface Props {
+  icon: string; /* actually needs to be a bundled glyph name from the config, but no better type exists */
+  subtitle: string;
+  title: string;
+}
+const { icon, subtitle, title } = Astro.props;
+---
+
+<div class="box">
+  <span class="title"><span class="icon">{icon}</span>{title}</span>
+  <span class="subtitle">{subtitle}</span>
+</div>
+
+<style>
+  .box {
+    background-color: var(--color-tertiary);
+    border-radius: var(--radius-base);
+    border: 3px solid var(--color-black);
+    box-shadow: 6px 6px 0 var(--color-black);
+    color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 1.25rem;
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+    font-size: 1.5rem;
+  }
+
+  .title {
+    align-items: center;
+    display: flex;
+    color: var(--color-black);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    gap: 4px;
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+</style>
