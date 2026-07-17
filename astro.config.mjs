@@ -5,6 +5,22 @@ import { defineConfig, fontProviders } from "astro/config";
 export default defineConfig({
   fonts: [
     {
+      provider: fontProviders.google(),
+      name: "Zen Dots",
+      cssVariable: "--font-display",
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Tangerine",
+      cssVariable: "--font-cursive",
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Outfit",
+      cssVariable: "--font-body",
+      weights: ["300"],
+    },
+    {
       provider: fontProviders.googleicons(),
       name: "Material Icons Outlined",
       cssVariable: "--font-icon",
