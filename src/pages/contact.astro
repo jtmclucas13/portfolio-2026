@@ -1,6 +1,8 @@
 ---
 export const prerender = false;
 import BoxItem from "../components/BoxItem.astro";
+import Button from "../components/Button.astro";
+import Flex from "../components/Flex.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -93,55 +95,60 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <div class="content">
     <h2>Contact Me</h2>
-    <div class="success">
-      <BoxItem
-        icon="check_circle"
-        title="Thank you!"
-        subtitle="I'll get back to you as soon as I can"
-        theme="success"
-      />
-    </div>
-    <form data-netlify="true" data-netlify-honeypot="bot-field">
-      <div>
-        <label>Name<input maxlength="1000" name="name" /></label>
-        <div class="field-error-element" data-field="name"></div>
-      </div>
-      <div>
-        <label>Email<input maxlength="1000" name="email" type="email" /></label>
-        <div class="field-error-element" data-field="email"></div>
-      </div>
-      <div>
-        <label>Subject<input maxlength="1000" name="subject" /></label>
-        <div class="field-error-element" data-field="subject"></div>
-      </div>
-      <div>
-        <label
-          >Message<textarea maxlength="20000" name="message" rows="5"
-          ></textarea></label
-        >
-        <div class="field-error-element" data-field="message"></div>
-      </div>
-
-      <input
-        name="bot-field"
-        style={{
-          visibility: "hidden",
-          height: 0,
-          margin: 0,
-          padding: 0,
-          border: 0,
-        }}
-      />
-      <div class="error">
+    <Flex gap={2} grow>
+      <div class="success">
         <BoxItem
-          icon="error"
-          title="Uh-oh!"
-          subtitle="There was an error sending your message. Please try again, or contact me via social media."
-          theme="danger"
+          icon="check_circle"
+          title="Thank you!"
+          subtitle="I'll get back to you as soon as I can"
+          theme="success"
         />
       </div>
-      <button type="submit">Send Email</button>
-    </form>
+      <form data-netlify="true" data-netlify-honeypot="bot-field">
+        <div>
+          <label>Name<input maxlength="1000" name="name" /></label>
+          <div class="field-error-element" data-field="name"></div>
+        </div>
+        <div>
+          <label
+            >Email<input maxlength="1000" name="email" type="email" /></label
+          >
+          <div class="field-error-element" data-field="email"></div>
+        </div>
+        <div>
+          <label>Subject<input maxlength="1000" name="subject" /></label>
+          <div class="field-error-element" data-field="subject"></div>
+        </div>
+        <div>
+          <label
+            >Message<textarea maxlength="20000" name="message" rows="5"
+            ></textarea></label
+          >
+          <div class="field-error-element" data-field="message"></div>
+        </div>
+
+        <input
+          name="bot-field"
+          style={{
+            visibility: "hidden",
+            height: 0,
+            margin: 0,
+            padding: 0,
+            border: 0,
+          }}
+        />
+        <div class="error">
+          <BoxItem
+            icon="error"
+            title="Uh-oh!"
+            subtitle="There was an error sending your message. Please try again, or contact me via social media."
+            theme="danger"
+          />
+        </div>
+        <Button type="submit">Send Email</Button>
+      </form>
+      <Flex grow>Hello!</Flex>
+    </Flex>
   </div>
 </Layout>
 
@@ -153,6 +160,7 @@ import Layout from "../layouts/Layout.astro";
   form {
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 1rem;
     margin-top: 1rem;
   }
@@ -164,6 +172,11 @@ import Layout from "../layouts/Layout.astro";
     input,
     textarea {
       margin-top: 4px;
+
+      &:focus {
+        border: 1px solid var(--color-secondary);
+        outline: none;
+      }
     }
   }
 

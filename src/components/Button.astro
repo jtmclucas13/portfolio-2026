@@ -1,15 +1,15 @@
 ---
 interface Props {
   children: any;
-  href: string;
+  type: HTMLButtonElement["type"];
 }
-const { href } = Astro.props;
+const { type } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<button type={type}><slot /></button>
 
 <style>
-  a {
+  button {
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--color-primary);
@@ -22,11 +22,11 @@ const { href } = Astro.props;
     transition: background-color 0.2s ease-in-out;
   }
 
-  a:hover {
+  button:hover {
     background-color: color-mix(in srgb, var(--color-primary), #fff 15%);
   }
 
-  a:active {
+  button:active {
     background-color: color-mix(in srgb, var(--color-primary), #fff 30%);
   }
 </style>
