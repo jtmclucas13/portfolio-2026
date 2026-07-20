@@ -18,8 +18,6 @@ export const server = {
         .string("Subject is required.")
         .max(1000, { error: "Subject must be shorter than 1000 characters." }),
     }),
-    handler: async ({ email, message, name, subject }) => {
-      console.log("HANDLER", email, name, message, subject); //JTM
-    },
+    handler: async (input) => input,
   }),
 };

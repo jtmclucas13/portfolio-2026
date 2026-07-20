@@ -3,7 +3,9 @@ export const prerender = false;
 import BoxItem from "../components/BoxItem.astro";
 import Button from "../components/Button.astro";
 import Flex from "../components/Flex.astro";
+import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
+import Socials from "../components/Socials.astro";
 ---
 
 <script>
@@ -95,7 +97,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <div class="content">
     <h2>Contact Me</h2>
-    <Flex gap={2} grow>
+    <Flex align="end" gap={2} grow>
       <div class="success">
         <BoxItem
           icon="check_circle"
@@ -145,9 +147,16 @@ import Layout from "../layouts/Layout.astro";
             theme="danger"
           />
         </div>
-        <Button type="submit">Send Email</Button>
+        <Button type="submit"><span class="icon">send</span>Send Email</Button>
       </form>
-      <Flex grow>Hello!</Flex>
+      <Flex align="center" direction="column" gap={5} grow justify="center">
+        <Socials gap={3} />
+        <LinkButton
+          href="McLucas - Professional Resume.pdf"
+          download="McLucas - Professional Resume"
+          ><span class="icon">download</span>Download my resume</LinkButton
+        >
+      </Flex>
     </Flex>
   </div>
 </Layout>
@@ -163,6 +172,10 @@ import Layout from "../layouts/Layout.astro";
     flex: 1;
     gap: 1rem;
     margin-top: 1rem;
+
+    button {
+      align-self: center;
+    }
   }
 
   label {
@@ -178,6 +191,10 @@ import Layout from "../layouts/Layout.astro";
         outline: none;
       }
     }
+  }
+
+  .icon {
+    font-family: var(--font-icon);
   }
 
   .success {

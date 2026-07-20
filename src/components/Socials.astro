@@ -1,0 +1,63 @@
+---
+interface Props {
+  gap?: number;
+  size?: "small" | "medium";
+  theme?: "inverted";
+}
+
+import GitHub from "../assets/github.svg";
+import Instagram from "../assets/instagram.svg";
+import LinkedIn from "../assets/linkedin.svg";
+import Flex from "./Flex.astro";
+
+const { gap = 1, size = "medium", theme } = Astro.props;
+---
+
+<Flex align="center" gap={gap}>
+  <a
+    href="https://www.linkedin.com/in/joshuamclucas/"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <LinkedIn class:list={["logo", size, theme]} />
+  </a>
+  <a
+    href="https://github.com/jtmclucas13"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <GitHub class:list={["logo", size, theme]} />
+  </a>
+  <a
+    href="https://www.instagram.com/jtmclucas13/"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    <Instagram class:list={["logo", size, theme]} />
+  </a>
+</Flex>
+
+<style>
+  .logo {
+    fill: var(--color-black);
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out;
+    width: 100px;
+
+    &.small {
+      width: 20px;
+    }
+
+    &.inverted {
+      fill: var(--color-secondary);
+
+      &:hover {
+        fill: var(--color-tertiary);
+      }
+    }
+
+    &:hover {
+      fill: var(--color-primary);
+    }
+  }
+</style>

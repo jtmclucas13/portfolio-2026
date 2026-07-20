@@ -1,6 +1,7 @@
 ---
 import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
+import Socials from "../components/Socials.astro";
 ---
 
 <!doctype html>
@@ -9,11 +10,18 @@ import Header from "../components/Header.astro";
     <Head />
   </head>
   <body>
-    <Header />
-    <div class="content">
-      <slot />
+    <div>
+      <Header />
+      <div class="content">
+        <slot />
+      </div>
     </div>
-    <footer>® Joshua McLucas, {new Date().getFullYear()}</footer>
+    <footer>
+      <span>® Joshua McLucas, {new Date().getFullYear()}</span><Socials
+        size="small"
+        theme="inverted"
+      />
+    </footer>
   </body>
 </html>
 
@@ -26,6 +34,9 @@ import Header from "../components/Header.astro";
   }
   body {
     background-color: var(--color-tertiary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .content {
@@ -34,10 +45,13 @@ import Header from "../components/Header.astro";
   }
 
   footer {
+    align-items: center;
     background-color: var(--color-black);
     color: var(--color-secondary);
+    display: flex;
     font-family: var(--font-display);
     font-size: 1.25rem;
+    justify-content: space-between;
     padding: 2rem;
   }
 </style>

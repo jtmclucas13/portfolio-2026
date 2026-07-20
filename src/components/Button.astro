@@ -1,7 +1,7 @@
 ---
 interface Props {
   children: any;
-  type: HTMLButtonElement["type"];
+  type?: HTMLButtonElement["type"];
 }
 const { type } = Astro.props;
 ---
@@ -10,11 +10,15 @@ const { type } = Astro.props;
 
 <style>
   button {
-    display: inline-block;
+    align-items: center;
+    display: inline-flex;
     padding: 0.5rem 1rem;
     background-color: var(--color-primary);
+    border: 1px solid var(--color-black);
     color: var(--color-white);
     cursor: pointer;
+    gap: 8px;
+    justify-content: center;
     text-decoration: none;
     font-family: var(--font-body);
     font-size: 1.25rem;

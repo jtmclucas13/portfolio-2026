@@ -1,20 +1,25 @@
 ---
 interface Props {
   children: any;
-  href: string;
+  download?: HTMLAnchorElement["download"];
+  href: HTMLAnchorElement["href"];
 }
-const { href } = Astro.props;
+const { download, href } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<a download={download} href={href}><slot /></a>
 
 <style>
   a {
-    display: inline-block;
+    align-items: center;
+    display: inline-flex;
     padding: 0.5rem 1rem;
     background-color: var(--color-primary);
+    border: 1px solid var(--color-black);
     color: var(--color-white);
     cursor: pointer;
+    gap: 8px;
+    justify-content: center;
     text-decoration: none;
     font-family: var(--font-body);
     font-size: 1.25rem;

@@ -35,6 +35,8 @@ export default defineConfig({
             "workspace_premium",
             "check_circle",
             "error",
+            "send",
+            "download",
           ],
         },
       },
