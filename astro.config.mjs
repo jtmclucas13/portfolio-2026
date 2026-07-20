@@ -34,6 +34,7 @@ export default defineConfig({
             "diversity_1",
             "workspace_premium",
             "check_circle",
+            "error",
           ],
         },
       },

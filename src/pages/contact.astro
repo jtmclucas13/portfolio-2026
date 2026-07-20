@@ -20,9 +20,19 @@ import Layout from "../layouts/Layout.astro";
       element.textContent = "";
       element.style.display = "none";
     });
+
+    const errorElement = document.querySelector(".error");
+    if (!isHTMLElement(errorElement)) {
+      return;
+    }
+
+    errorElement.style.display = "none";
   }
 
-  function showError(field: string, message: string) {
+  function showFieldError(
+    field: string,
+    message: string = "Something went wrong",
+  ) {
     const fieldErrorElement = document.querySelector(
       `.field-error-element[data-field="${field}"]`,
     );
@@ -44,6 +54,16 @@ import Layout from "../layouts/Layout.astro";
     successMessage.style.display = "block";
   }
 
+  function showError() {
+    const errorElement = document.querySelector(".error");
+
+    if (!isHTMLElement(errorElement)) {
+      return;
+    }
+
+    errorElement.style.display = "block";
+  }
+
   const form = document.querySelector("form");
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -56,14 +76,13 @@ import Layout from "../layouts/Layout.astro";
       for (let field in error.fields) {
         // @ts-expect-error this is ok, it's properly indexed
         const fieldMessage = error.fields[field][0];
-        showError(field, fieldMessage);
+        showFieldError(field, fieldMessage);
       }
       return;
     }
 
     if (error) {
-      //JTM handle errors
-      alert("error!");
+      showError();
       return;
     }
 
@@ -79,6 +98,7 @@ import Layout from "../layouts/Layout.astro";
         icon="check_circle"
         title="Thank you!"
         subtitle="I'll get back to you as soon as I can"
+        theme="success"
       />
     </div>
     <form data-netlify="true" data-netlify-honeypot="bot-field">
@@ -112,6 +132,14 @@ import Layout from "../layouts/Layout.astro";
           border: 0,
         }}
       />
+      <div class="error">
+        <BoxItem
+          icon="error"
+          title="Uh-oh!"
+          subtitle="There was an error sending your message. Please try again, or contact me via social media."
+          theme="danger"
+        />
+      </div>
       <button type="submit">Send Email</button>
     </form>
   </div>
@@ -141,7 +169,7 @@ import Layout from "../layouts/Layout.astro";
 
   .success {
     display: none;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .field-error-element {
@@ -149,8 +177,7 @@ import Layout from "../layouts/Layout.astro";
     font-size: 0.875rem;
   }
 
-  .icon {
-    font-family: var(--font-icon);
-    font-size: 28px;
+  .error {
+    display: none;
   }
 </style>
