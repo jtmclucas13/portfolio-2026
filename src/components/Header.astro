@@ -1,8 +1,16 @@
+---
+import Chameleon from "../assets/chameleon-2.svg";
+import Flex from "./Flex.astro";
+---
+
 <header>
-  <div>
-    <a href="/"><h1>Joshua McLucas</h1></a>
-    <h2 data-carousel>Software Engineer</h2>
-  </div>
+  <Flex align="center" class="main-header" gap={1}>
+    <Chameleon />
+    <div>
+      <a href="/"><h1>Joshua McLucas</h1></a>
+      <h2 data-carousel>Software Engineer</h2>
+    </div>
+  </Flex>
   <div aria-label="Open Navigation" class="hamburger">menu</div>
   <div aria-hidden="true" class="navigation">
     <ul>
@@ -111,6 +119,12 @@
 
   .icon {
     font-family: var(--font-icon);
+  }
+
+  .main-header {
+    svg {
+      width: 72px;
+    }
   }
 
   .navigation {
