@@ -1,0 +1,156 @@
+---
+export const prerender = false;
+import BoxItem from "../components/BoxItem.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<script>
+  import { actions, isInputError } from "astro:actions";
+
+  function isHTMLElement(element: Element | null) {
+    return !!element && element instanceof HTMLElement;
+  }
+
+  function hideAllErrors() {
+    document.querySelectorAll(".field-error-element").forEach((element) => {
+      if (!isHTMLElement(element)) {
+        return;
+      }
+
+      element.textContent = "";
+      element.style.display = "none";
+    });
+  }
+
+  function showError(field: string, message: string) {
+    const fieldErrorElement = document.querySelector(
+      `.field-error-element[data-field="${field}"]`,
+    );
+    if (!isHTMLElement(fieldErrorElement)) {
+      return;
+    }
+    fieldErrorElement.textContent = message;
+    fieldErrorElement.style.display = "block";
+  }
+
+  function showSuccess(formElement: HTMLElement) {
+    formElement.style.display = "none";
+
+    const successMessage = document.querySelector(".success");
+    if (!isHTMLElement(successMessage)) {
+      return;
+    }
+
+    successMessage.style.display = "block";
+  }
+
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const { error } = await actions.sendEmail(formData);
+
+    hideAllErrors();
+
+    if (isInputError(error)) {
+      for (let field in error.fields) {
+        // @ts-expect-error this is ok, it's properly indexed
+        const fieldMessage = error.fields[field][0];
+        showError(field, fieldMessage);
+      }
+      return;
+    }
+
+    if (error) {
+      //JTM handle errors
+      alert("error!");
+      return;
+    }
+
+    showSuccess(form);
+  });
+</script>
+
+<Layout>
+  <div class="content">
+    <h2>Contact Me</h2>
+    <div class="success">
+      <BoxItem
+        icon="check_circle"
+        title="Thank you!"
+        subtitle="I'll get back to you as soon as I can"
+      />
+    </div>
+    <form data-netlify="true" data-netlify-honeypot="bot-field">
+      <div>
+        <label>Name<input maxlength="1000" name="name" /></label>
+        <div class="field-error-element" data-field="name"></div>
+      </div>
+      <div>
+        <label>Email<input maxlength="1000" name="email" type="email" /></label>
+        <div class="field-error-element" data-field="email"></div>
+      </div>
+      <div>
+        <label>Subject<input maxlength="1000" name="subject" /></label>
+        <div class="field-error-element" data-field="subject"></div>
+      </div>
+      <div>
+        <label
+          >Message<textarea maxlength="20000" name="message" rows="5"
+          ></textarea></label
+        >
+        <div class="field-error-element" data-field="message"></div>
+      </div>
+
+      <input
+        name="bot-field"
+        style={{
+          visibility: "hidden",
+          height: 0,
+          margin: 0,
+          padding: 0,
+          border: 0,
+        }}
+      />
+      <button type="submit">Send Email</button>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .content {
+    padding: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea {
+      margin-top: 4px;
+    }
+  }
+
+  .success {
+    display: none;
+    margin-top: 2rem;
+  }
+
+  .field-error-element {
+    color: var(--color-danger);
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+    font-size: 28px;
+  }
+</style>

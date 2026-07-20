@@ -33,6 +33,7 @@ export default defineConfig({
             "check_circle",
             "diversity_1",
             "workspace_premium",
+            "check_circle",
           ],
         },
       },
