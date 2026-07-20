@@ -1,6 +1,15 @@
 <header>
-  <a href="/"><h1>Joshua McLucas</h1></a>
-  <h2 data-carousel>Software Engineer</h2>
+  <div>
+    <a href="/"><h1>Joshua McLucas</h1></a>
+    <h2 data-carousel>Software Engineer</h2>
+  </div>
+  <div aria-label="Open Navigation" class="hamburger">menu</div>
+  <div aria-hidden="true" class="navigation">
+    <ul>
+      <li><span class="icon">home</span><a href="/">Home</a></li>
+      <li><span class="icon">drafts</span><a href="/contact">Contact</a></li>
+    </ul>
+  </div>
 </header>
 
 <script>
@@ -23,17 +32,117 @@
 
   updateCarousel();
   setInterval(updateCarousel, 3000);
+
+  function isNavigationOpen() {
+    const navigation = document.querySelector(".navigation");
+    return navigation && navigation.classList.contains("open");
+  }
+
+  function openNavigation() {
+    const navigation = document.querySelector(".navigation");
+    navigation?.classList.add("open");
+    navigation?.removeAttribute("aria-hidden");
+  }
+
+  function closeNavigation() {
+    const navigation = document.querySelector(".navigation");
+    navigation?.classList.remove("open");
+    navigation?.setAttribute("aria-hidden", "true");
+  }
+
+  function handleClickOutsideNavigation(e: MouseEvent) {
+    const navigation = document.querySelector(".navigation");
+    if (!navigation || !isNavigationOpen()) {
+      return;
+    }
+
+    if (!navigation.contains(e.target as Node)) {
+      closeNavigation();
+      document.removeEventListener("click", handleClickOutsideNavigation);
+    }
+  }
+
+  const hamburger = document.querySelector(".hamburger");
+  hamburger?.addEventListener("click", (e) => {
+    // required to avoid immediate trigger of handleClickOutsideNavigation
+    if (!isNavigationOpen()) {
+      e.stopPropagation();
+    }
+
+    openNavigation();
+
+    document.addEventListener("click", handleClickOutsideNavigation);
+  });
 </script>
 
 <style>
   header {
+    align-items: center;
     background-color: var(--color-black);
     color: var(--color-secondary);
+    display: flex;
+    justify-content: space-between;
     padding: 1rem 2rem;
   }
 
   h1 {
     margin-bottom: 0.5rem;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    font-family: var(--font-icon);
+    font-size: 50px;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: color-mix(in srgb, var(--color-secondary), #fff 30%);
+    }
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+  }
+
+  .navigation {
+    --header-height: 107px;
+    background-clip: padding-box;
+    background-color: var(--color-black);
+    border-image-outset: 34px;
+    border: 20px solid transparent;
+    border-image: url("../assets/lace-border.png") 34 round;
+    height: calc(100% - var(--header-height));
+    position: fixed;
+    right: -500px;
+    top: var(--header-height);
+    transition: transform 0.2s ease-in;
+    width: 300px;
+    z-index: 999;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        align-items: center;
+        display: flex;
+        font-size: 2rem;
+        gap: 8px;
+      }
+
+      li:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
+
+      a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.open {
+      transform: translateX(-500px);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {

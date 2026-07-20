@@ -52,12 +52,12 @@ const { gap = 1, size = "medium", theme } = Astro.props;
       fill: var(--color-secondary);
 
       &:hover {
-        fill: var(--color-tertiary);
+        fill: color-mix(in srgb, var(--color-secondary), #fff 30%);
       }
     }
 
     &:hover {
-      fill: var(--color-primary);
+      fill: color-mix(in srgb, var(--color-black), #fff 20%);
     }
   }
 </style>
