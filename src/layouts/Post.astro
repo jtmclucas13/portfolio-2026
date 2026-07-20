@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+  <div class="header">
+    <h1>{frontmatter.title}</h1>
+    <h2>
+      {
+        `${new Date(frontmatter.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
+      }
+    </h2>
+  </div>
+  <div class="content">
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  .content {
+    padding: 2rem;
+
+    h2 {
+      margin: 2rem 0 1rem;
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .header {
+    padding: 2rem 2rem 0;
+  }
+</style>
