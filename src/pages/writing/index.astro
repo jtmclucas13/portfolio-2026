@@ -1,14 +1,9 @@
 ---
-interface Frontmatter {
-  date: string;
-  description: string;
-  title: string;
-}
-
-import { type MarkdownInstance } from "astro";
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-const allPosts = Object.values(
-  import.meta.glob<MarkdownInstance<Frontmatter>>("./*.md", { eager: true }),
+
+const allPosts = (await getCollection("writing")).sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
 );
 ---
 
@@ -21,10 +16,10 @@ const allPosts = Object.values(
           <li>
             <div class="metadata">
               <h3>
-                <a href={post.url}>{post.frontmatter.title}</a>
+                <a href={post.filePath}>{post.data.title}</a>
               </h3>
               <p>
-                {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
+                {new Date(post.data.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -32,7 +27,7 @@ const allPosts = Object.values(
               </p>
               <p>Estimated time to read:</p>
             </div>
-            <p>{post.frontmatter.description}</p>
+            <p>{post.data.description}</p>
             <hr />
           </li>
         ))
