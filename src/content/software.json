@@ -1,0 +1,156 @@
+[
+  {
+    "description": "As a Staff Software Engineer at Close, I spent the bulk of my time as a product engineer on the Messaging & Scheduling team, delivering features from spec to implementation that support the over 2 million monthly emails and SMS sent in the platform. Major features included SMS threading, automatic lead discovery, a page to view all historical phone conversations, and the ability to schedule meetings natively in Close. I also created Close's first in-product AI features - Lead Summaries, Email Thread Summaries, and email Draft Assist. I worked with Timelines.AI to create a WhatsApp integration. Beyond feature delivery, I led cross-cutting frontend infrastructure work including migrations to TypeScript and React from Backbone and AI agent tooling standardization. Team health always comes first for me, so I helped author the team's working agreements and facilitated retrospectives along the way.",
+    "id": "close",
+    "link": "https://www.close.com/",
+    "logo": "../assets/close-logo.svg",
+    "repoLink": null,
+    "subtitle": "Leveling-up emailing, SMS messaging, and meetings in an AI-powered CRM",
+    "technologies": [
+      { "name": "TypeScript", "logo": "../assets/typescript-logo.svg" },
+      { "name": "React", "logo": "../assets/react-logo.svg" },
+      { "name": "GraphQL", "logo": "../assets/graphql-logo.svg" },
+      {
+        "name": "Agentic Coding Tools (LLMs, bots)",
+        "logo": "../assets/ai-logo.svg"
+      },
+      { "name": "ElevenLabs", "logo": "../assets/11labs-logo.svg" },
+      { "name": "Twilio", "logo": "../assets/twilio-logo.svg" },
+      { "name": "Vite", "logo": "../assets/vite-logo.svg" },
+      { "name": "Storybook", "logo": "../assets/storybook-logo.svg" },
+      { "name": "BackboneJS", "logo": "../assets/backbone-logo.svg" },
+      { "name": "Websockets", "logo": "../assets/websocket-logo.svg" },
+      { "name": "Vitest", "logo": "../assets/vitest-logo.svg" },
+      { "name": "Playwright", "logo": "../assets/playwright-logo.svg" }
+    ],
+    "title": "Close CRM"
+  },
+  {
+    "description": "I began my time as a Software Engineer at Retrium, employee #16, eventually rising to the position of Staff Software Engineer. Working with a real-time collaborative product, I helped cross-functional teams craft major new features in a myriad of ways - from prototyping user experiences, to planning large chunks of work, to writing code. I facilitated regular retrospectives and refined our development processes to continually improve the team. Additionally, I ran the hiring process for the product team, doubling it in size and creating two new positions for the organization.",
+    "id": "retrium",
+    "link": "https://www.retrium.com/",
+    "logo": "../assets/retrium-logo.svg",
+    "repoLink": null,
+    "subtitle": "Building a Tool for Real-time Facilitation of Agile Retrospectives",
+    "technologies": [
+      { "name": "TypeScript", "logo": "../assets/typescript-logo.svg" },
+      { "name": "React", "logo": "../assets/react-logo.svg" },
+      { "name": "Node/Express", "logo": "../assets/node-logo.svg" },
+      { "name": "MongoDB", "logo": "../assets/mongo-logo.svg" },
+      { "name": "Websockets", "logo": "../assets/websocket-logo.svg" },
+      { "name": "Jest", "logo": "../assets/jest-logo.svg" },
+      { "name": "Playwright", "logo": "../assets/playwright-logo.svg" }
+    ],
+    "title": "Retrium"
+  },
+  {
+    "description": "Industry-leading provider of IRT software Suvoda recognized that their process for launching new clinical drug trials was broken. When they launched a new team whose purpose was to launch a platform for extending and customizing their apps, they hired me to help lead the frontend transition. I performed R&D for various approaches to extensibility, including page-level editor frameworks, PWA features, and template-based deployments driven by CLI tools. Alongside this endeavour, I helped create a shared UI library based on Material UI for usage across products.",
+    "id": "suvoda",
+    "link": "https://www.suvoda.com/",
+    "logo": "../assets/suvoda-logo.png",
+    "repoLink": null,
+    "subtitle": "Creating a Platform for Clinical Drug Trial Management",
+    "technologies": [
+      { "name": "TypeScript", "logo": "../assets/typescript-logo.svg" },
+      { "name": "React", "logo": "../assets/react-logo.svg" },
+      { "name": "Redux", "logo": "../assets/redux-logo.svg" },
+      { "name": "Jest", "logo": "../assets/jest-logo.svg" },
+      { "name": "Storybook", "logo": "../assets/storybook-logo.svg" },
+      { "name": "GraphQL", "logo": "../assets/graphql-logo.svg" },
+      { "name": "Material UI", "logo": "../assets/material-logo.svg" }
+    ],
+    "title": "Suvoda"
+  },
+  {
+    "description": "I was Amino Payments' first full-time frontend hire, coming into the company as employee #20. I inherited an MVP-style product and added many new features while simultaneously cleaning it up and making it more extensible and driven by best practices. I spearheaded bringing end-to-end testing to our codebase. In addition to developing a set of data visualizations for a new dashboard, I supported the sales team by spinning up demo sites for potential clients, complete with data to fit their use case.",
+    "id": "amino",
+    "link": "https://integralads.com/",
+    "logo": "../assets/amino-logo.png",
+    "repoLink": null,
+    "subtitle": "Disrupting Adtech Using The Blockchain",
+    "technologies": [
+      { "name": "React", "logo": "../assets/react-logo.svg" },
+      { "name": "Redux", "logo": "../assets/redux-logo.svg" },
+      { "name": "Webpack", "logo": "../assets/webpack-logo.svg" },
+      { "name": "Sass", "logo": "../assets/sass-logo.svg" },
+      { "name": "Victory", "logo": "../assets/victory-logo.svg" },
+      { "name": "CodeceptJS", "logo": "../assets/codecept-logo.svg" },
+      { "name": "Jest", "logo": "../assets/jest-logo.svg" }
+    ],
+    "title": "Amino Payments"
+  },
+  {
+    "description": "As a contractor at PromptWorks, I collaborated with engineers at URBN to build the customer-facing app for a new clothing rental service called Nuuly. I led the PromptWorks team in building the account management, product review, and report a problem sections of the site using Vue. I was responsible for kick-starting their unit testing, as well as managing some third party integrations with services such as Intercom and Braze.",
+    "id": "urbn",
+    "link": "https://www.nuuly.com/",
+    "logo": "../assets/urbn-logo.png",
+    "repoLink": null,
+    "subtitle": "Building a new brand",
+    "technologies": [
+      { "name": "Vue JS", "logo": "../assets/vue-logo.svg" },
+      { "name": "Sass", "logo": "../assets/sass-logo.svg" },
+      { "name": "Storybook", "logo": "../assets/storybook-logo.svg" },
+      { "name": "Jest", "logo": "../assets/jest-logo.svg" }
+    ],
+    "title": "Nuuly"
+  },
+  {
+    "description": "I worked for over two years at Nuix, an Australia-based digital forensics/cybersecurity company on several different product teams. My initial task was to develop animated graphs and real-time data visualizations for an administration dashboard supporting their enterprise investigation platform. I spent the majority of my time there leading the frontend Orchestration team (3-4 devs) in building a workflow manager. I mentored junior engineers, participated in the hiring process, and guided the overall architecture and direction of the frontend codebase. Nuix's cross team collaboration was unparalleled. I participated in that by spearheading an initiative to create a fully custom live style guide supporting design and development across several teams, as well as serving as one of four maintainers of an internal UI library shared across teams and continents.",
+    "id": "nuix",
+    "link": "https://www.nuix.com/",
+    "logo": "../assets/nuix-logo.png",
+    "repoLink": null,
+    "subtitle": "Leading a Team Through Enterprise Workflows",
+    "technologies": [
+      { "name": "React", "logo": "../assets/react-logo.svg" },
+      { "name": "Redux", "logo": "../assets/redux-logo.svg" },
+      { "name": "Webpack", "logo": "../assets/webpack-logo.svg" },
+      { "name": "Sass", "logo": "../assets/sass-logo.svg" },
+      { "name": "D3", "logo": "../assets/d3-logo.svg" },
+      { "name": "Keylines", "logo": "../assets/keylines-logo.svg" },
+      { "name": "Jest", "logo": "../assets/jest-logo.svg" }
+    ],
+    "title": "Nuix"
+  },
+  {
+    "description": "My theater company, [redacted] was invited to co-produce and take part in a new festival exploring questions of privilege alongside three other Philadelphia-based artists. I designed the website and developed it with icon design from Vanessa Ogbuehi.",
+    "id": "refocus",
+    "link": null,
+    "logo": "../assets/refocus-logo.png",
+    "repoLink": null,
+    "subtitle": "Founding a Festival",
+    "technologies": [
+      { "name": "Jekyll", "logo": "../assets/jekyll-logo.svg" },
+      { "name": "jQuery", "logo": "../assets/jquery-logo.svg" }
+    ],
+    "title": "(Re)Focus Fest"
+  },
+  {
+    "description": "I was hired to create a website for the first American tour of Chopin Without Piano, a play by Polish theater company CENTRALA. This production was supported by major arts grants and Swarthmore College. My website was intended both to sell tickets and to become an English-language hub for the production. Special attention was given to Lost Pianos, a viral marketing campaign for the production. I was the sole developer on the project, but I collaborated with marketing and content specialists throughout the process to create the ultimate experience.",
+    "id": "chopin",
+    "link": null,
+    "logo": "../assets/chopin-logo.png",
+    "repoLink": null,
+    "subtitle": "Crafting A Polish Theater Debut in America",
+    "technologies": [
+      { "name": "Jekyll", "logo": "../assets/jekyll-logo.svg" },
+      { "name": "jQuery", "logo": "../assets/jquery-logo.svg" },
+      { "name": "Photoshop", "logo": "../assets/photoshop-logo.svg" }
+    ],
+    "title": "Chopin Without Piano"
+  },
+  {
+    "description": "I founded [redacted] Theater Company in early 2014, and when we were finally ready to launch publicly, I created the website. I integrated WordPress for the blog section, but otherwise hand-coded the site from scratch. This site was one of my first designs, and I am personally responsible for most of the content.",
+    "id": "redacted",
+    "link": null,
+    "logo": "../assets/redacted-logo.png",
+    "repoLink": null,
+    "subtitle": "Launching An Artistic Venture",
+    "technologies": [
+      { "name": "PHP", "logo": "../assets/jekyll-logo.svg" },
+      { "name": "Wordpress", "logo": "../assets/wordpress-logo.svg" },
+      { "name": "jQuery", "logo": "../assets/jquery-logo.svg" }
+    ],
+    "title": "[redacted] Theater Company"
+  }
+]

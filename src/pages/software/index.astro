@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BoxItem from "../../components/BoxItem.astro";
+
+const allSoftwareEntries = await getCollection("software");
+---
+
+<Layout>
+  <div class="content">
+    <h2>Software Experience</h2>
+    <div class="software-items">
+      {
+        allSoftwareEntries.map((entry) => (
+          <BoxItem
+            class="item"
+            href="//JTM fix this"
+            subtitle={entry.data.subtitle}
+            title={entry.data.title}
+          >
+            <Image alt={entry.data.title} src={entry.data.logo} width="100" />
+          </BoxItem>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .content {
+    padding: 2rem;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .software-items {
+    display: grid;
+    grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
+    gap: 2rem;
+  }
+</style>

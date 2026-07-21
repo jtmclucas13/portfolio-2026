@@ -1,17 +1,26 @@
 ---
 interface Props {
-  icon: string; /* actually needs to be a bundled glyph name from the config, but no better type exists */
+  class?: string;
+  href?: string;
+  icon?: string; /* actually needs to be a bundled glyph name from the config, but no better type exists */
   subtitle: string;
   theme?: "danger" | "success";
   title: string;
 }
-const { icon, subtitle, theme, title } = Astro.props;
+const { class: className, href, icon, subtitle, theme, title } = Astro.props;
+
+const Element = href ? "button" : "div";
 ---
 
-<div class:list={["box", theme]}>
-  <span class="title"><span class="icon">{icon}</span>{title}</span>
-  <span class="subtitle">{subtitle}</span>
-</div>
+<Element class:list={["box", { link: !!href }, theme, className]}>
+  <div class="image">
+    <slot />
+  </div>
+  <div class="main-content">
+    <span class="title">{icon && <span class="icon">{icon}</span>}{title}</span>
+    <span class="subtitle">{subtitle}</span>
+  </div>
+</Element>
 
 <style>
   .box {
@@ -21,9 +30,24 @@ const { icon, subtitle, theme, title } = Astro.props;
     box-shadow: 6px 6px 0 var(--color-black);
     color: var(--color-black);
     display: flex;
+    gap: 16px;
+    padding: 1.25rem;
+
+    &.link {
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--color-secondary);
+      }
+    }
+  }
+
+  .main-content {
+    display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 1.25rem;
   }
 
   .icon {
