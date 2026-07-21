@@ -1,7 +1,9 @@
 // @ts-check
+import { unified } from "@astrojs/markdown-remark";
 import { defineConfig, fontProviders } from "astro/config";
-
 import mdx from "@astrojs/mdx";
+
+import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -52,4 +54,9 @@ export default defineConfig({
 
   site: "https://www.joshuamclucas.com",
   integrations: [mdx()],
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkReadingTime],
+    }),
+  },
 });

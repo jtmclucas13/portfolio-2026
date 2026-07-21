@@ -1,12 +1,13 @@
 ---
 interface Props {
   date: string;
+  timeToRead: string;
   title: string;
 }
 import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
 
-const { date, title } = Astro.props;
+const { date, timeToRead, title } = Astro.props;
 ---
 
 <Layout>
@@ -20,6 +21,7 @@ const { date, title } = Astro.props;
         `${new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
       }
     </h2>
+    <p class="time-to-read">{timeToRead}</p>
   </div>
   <div class="content">
     <slot />
@@ -63,5 +65,10 @@ const { date, title } = Astro.props;
     a {
       margin-bottom: 1rem;
     }
+  }
+
+  .time-to-read {
+    font-size: 1rem;
+    font-style: italic;
   }
 </style>
