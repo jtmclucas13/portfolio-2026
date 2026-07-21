@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  alt: string;
+  caption: string;
+  src: ImageMetadata;
+}
+
+const { alt, caption, src } = Astro.props;
+---
+
+<div class="container">
+  <Image alt={alt} src={src} />
+  <div class="caption">{caption}</div>
+</div>
+
+<style>
+  .container {
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    color: var(--color-white);
+    bottom: 5px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100%;
+  }
+</style>

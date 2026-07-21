@@ -3,6 +3,7 @@ interface Props {
   date: string;
   title: string;
 }
+import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
 
 const { date, title } = Astro.props;
@@ -10,7 +11,9 @@ const { date, title } = Astro.props;
 
 <Layout>
   <div class="header">
-    <a href="/writing"><span class="icon">arrow_back</span>All posts</a>
+    <LinkButton href="/writing"
+      ><span class="icon">arrow_back</span>All Posts</LinkButton
+    >
     <h1>{title}</h1>
     <h2>
       {
@@ -26,6 +29,15 @@ const { date, title } = Astro.props;
 <style>
   .content {
     padding: 2rem;
+
+    ul {
+      li {
+        font-size: 1.25rem;
+        list-style-type: disc;
+        margin-inline-start: 2rem;
+        padding-bottom: 1rem;
+      }
+    }
 
     h2 {
       margin: 2rem 0 1rem;
@@ -47,5 +59,9 @@ const { date, title } = Astro.props;
 
   .header {
     padding: 2rem 2rem 0;
+
+    a {
+      margin-bottom: 1rem;
+    }
   }
 </style>

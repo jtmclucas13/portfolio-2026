@@ -16,7 +16,7 @@ const allPosts = (await getCollection("writing")).sort(
           <li>
             <div class="metadata">
               <h3>
-                <a href={post.filePath}>{post.data.title}</a>
+                <a href={`/writing/${post.id}`}>{post.data.title}</a>
               </h3>
               <p>
                 {new Date(post.data.date).toLocaleDateString("en-US", {
