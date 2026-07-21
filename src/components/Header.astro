@@ -1,6 +1,8 @@
 ---
 import Chameleon from "../assets/chameleon-2.svg";
 import Flex from "./Flex.astro";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header>
@@ -8,7 +10,9 @@ import Flex from "./Flex.astro";
     <Chameleon />
     <div>
       <a href="/"><h1>Joshua McLucas</h1></a>
-      <h2 data-carousel>Software Engineer</h2>
+      <h2 data-carousel class:list={[{ animate: currentPath === "/" }]}>
+        Career Chameleon
+      </h2>
     </div>
   </Flex>
   <div aria-label="Open Navigation" class="hamburger">menu</div>
@@ -48,7 +52,10 @@ import Flex from "./Flex.astro";
   }
 
   updateCarousel();
-  setInterval(updateCarousel, 3000);
+
+  if (window.location.pathname === "/") {
+    setInterval(updateCarousel, 3000);
+  }
 
   function isNavigationOpen() {
     const navigation = document.querySelector(".navigation");
@@ -170,7 +177,9 @@ import Flex from "./Flex.astro";
 
   @media (prefers-reduced-motion: no-preference) {
     h2 {
-      animation: fadeIn 1.5s alternate infinite;
+      &.animate {
+        animation: fadeIn 1.5s alternate infinite;
+      }
     }
   }
 
