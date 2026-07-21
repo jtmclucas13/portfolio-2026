@@ -13,9 +13,13 @@ const Element = href ? "button" : "div";
 ---
 
 <Element class:list={["box", { link: !!href }, theme, className]}>
-  <div class="image">
-    <slot />
-  </div>
+  {
+    Astro.slots.has("default") && (
+      <div class="image">
+        <slot />
+      </div>
+    )
+  }
   <div class="main-content">
     <span class="title">{icon && <span class="icon">{icon}</span>}{title}</span>
     <span class="subtitle">{subtitle}</span>

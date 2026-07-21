@@ -47,7 +47,7 @@
     "description": "Industry-leading provider of IRT software Suvoda recognized that their process for launching new clinical drug trials was broken. When they launched a new team whose purpose was to launch a platform for extending and customizing their apps, they hired me to help lead the frontend transition. I performed R&D for various approaches to extensibility, including page-level editor frameworks, PWA features, and template-based deployments driven by CLI tools. Alongside this endeavour, I helped create a shared UI library based on Material UI for usage across products.",
     "id": "suvoda",
     "link": "https://www.suvoda.com/",
-    "logo": "../assets/suvoda-logo.png",
+    "logo": "../assets/suvoda-logo.jpeg",
     "repoLink": null,
     "subtitle": "Creating a Platform for Clinical Drug Trial Management",
     "technologies": [
@@ -98,7 +98,7 @@
     "description": "I worked for over two years at Nuix, an Australia-based digital forensics/cybersecurity company on several different product teams. My initial task was to develop animated graphs and real-time data visualizations for an administration dashboard supporting their enterprise investigation platform. I spent the majority of my time there leading the frontend Orchestration team (3-4 devs) in building a workflow manager. I mentored junior engineers, participated in the hiring process, and guided the overall architecture and direction of the frontend codebase. Nuix's cross team collaboration was unparalleled. I participated in that by spearheading an initiative to create a fully custom live style guide supporting design and development across several teams, as well as serving as one of four maintainers of an internal UI library shared across teams and continents.",
     "id": "nuix",
     "link": "https://www.nuix.com/",
-    "logo": "../assets/nuix-logo.png",
+    "logo": "../assets/nuix-logo.svg",
     "repoLink": null,
     "subtitle": "Leading a Team Through Enterprise Workflows",
     "technologies": [
