@@ -33,9 +33,14 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
     <div class="content">
       <div>
         <p>{entry.data.description}</p>
-        <LinkButton href="/software"
-          ><span class="icon">arrow_back</span>All Projects</LinkButton
-        >
+        <div class="button-group">
+          <LinkButton href="/software" theme="secondary"
+            ><span class="icon">arrow_back</span>All Projects</LinkButton
+          >
+          <LinkButton href="/contact"
+            ><span class="icon">send</span>Contact Me</LinkButton
+          >
+        </div>
       </div>
       <aside>
         <div>
@@ -77,6 +82,11 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
     aside {
       flex: 1;
     }
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
   }
 
   aside {

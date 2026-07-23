@@ -3,20 +3,18 @@ interface Props {
   children: any;
   download?: HTMLAnchorElement["download"];
   href: HTMLAnchorElement["href"];
+  theme?: "primary" | "secondary";
 }
-const { download, href } = Astro.props;
+const { download, href, theme = "primary" } = Astro.props;
 ---
 
-<a download={download} href={href}><slot /></a>
+<a class={theme} download={download} href={href}><slot /></a>
 
 <style>
   a {
     align-items: center;
     display: inline-flex;
     padding: 0.5rem 1rem;
-    background-color: var(--color-primary);
-    border: 1px solid var(--color-black);
-    color: var(--color-white);
     cursor: pointer;
     gap: 8px;
     justify-content: center;
@@ -25,13 +23,37 @@ const { download, href } = Astro.props;
     font-size: 1.25rem;
     border-radius: var(--radius-base);
     transition: background-color 0.2s ease-in-out;
+
+    &.primary {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-black);
+      color: var(--color-white);
+    }
+
+    &.secondary {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+    }
   }
 
   a:hover {
-    background-color: color-mix(in srgb, var(--color-primary), #fff 15%);
+    &.primary {
+      background-color: color-mix(in srgb, var(--color-primary), #fff 15%);
+    }
+
+    &.secondary {
+      background-color: color-mix(in srgb, var(--color-primary), #fff 85%);
+    }
   }
 
   a:active {
-    background-color: color-mix(in srgb, var(--color-primary), #fff 30%);
+    &.primary {
+      background-color: color-mix(in srgb, var(--color-primary), #fff 30%);
+    }
+
+    &.secondary {
+      background-color: color-mix(in srgb, var(--color-primary), #fff 70%);
+    }
   }
 </style>
