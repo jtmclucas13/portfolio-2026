@@ -1,0 +1,140 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import LinkButton from "../../components/LinkButton.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("software");
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const startYear = new Date(entry.data.startDate).getFullYear();
+const endYear = new Date(entry.data.endDate).getFullYear();
+const isSameYear = startYear === endYear;
+const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
+---
+
+<Layout>
+  <div class="container">
+    <div class="header">
+      <Image alt={entry.data.title} src={entry.data.logo} width="100" />
+      <div>
+        <h2>
+          <a href={entry.data.link} target="_blank">{entry.data.title}</a>
+        </h2>
+        <p class="date">{dateRange}</p>
+      </div>
+    </div>
+    <div class="content">
+      <div>
+        <p>{entry.data.description}</p>
+        <LinkButton href="/software"
+          ><span class="icon">arrow_back</span>All Projects</LinkButton
+        >
+      </div>
+      <aside>
+        <div>
+          <h3>Technologies Used</h3>
+          {
+            entry.data.technologies.map((tech) => (
+              <div class="tech-item">
+                <Image alt={tech.name} src={tech.logo} width={30} />
+                {tech.name}
+              </div>
+            ))
+          }
+        </div>
+      </aside>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    padding: 2rem;
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    display: flex;
+    gap: 2rem;
+
+    > div {
+      flex: 2;
+    }
+
+    aside {
+      flex: 1;
+    }
+  }
+
+  aside {
+    border-image-outset: 34px;
+    border: 20px solid transparent;
+    border-image: url("../../assets/lace-border.png") 34 round;
+    color: var(--color-secondary);
+    flex: 1 1 50%;
+    text-align: center;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    > div {
+      background-color: var(--color-black);
+      height: 100%;
+      padding: 2rem;
+      width: 100%;
+    }
+  }
+
+  .tech-item {
+    align-items: center;
+    display: flex;
+    font-size: 1.25rem;
+    gap: 16px;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+  }
+
+  .date {
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .link-with-icon {
+    align-items: center;
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .icon {
+      padding-right: 4px;
+    }
+  }
+</style>

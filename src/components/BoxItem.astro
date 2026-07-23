@@ -9,10 +9,10 @@ interface Props {
 }
 const { class: className, href, icon, subtitle, theme, title } = Astro.props;
 
-const Element = href ? "button" : "div";
+const Element = href ? "a" : "div";
 ---
 
-<Element class:list={["box", { link: !!href }, theme, className]}>
+<Element class:list={["box", { link: !!href }, theme, className]} href={href}>
   {
     Astro.slots.has("default") && (
       <div class="image">

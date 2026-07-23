@@ -46,6 +46,7 @@ export default defineConfig({
             "comedy_mask",
             "drafts",
             "edit_document",
+            "open_in_new",
           ],
         },
       },
