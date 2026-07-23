@@ -16,11 +16,14 @@ const software = defineCollection({
   schema: ({ image }) =>
     z.object({
       description: z.string(),
+      endDate: z.string(),
       id: z.string(),
+      isProject: z.boolean().optional(),
       link: z.string().nullable(),
       logo: image(),
       repoLink: z.string().nullable(),
       subtitle: z.string(),
+      startDate: z.string(),
       technologies: z.array(
         z.object({
           name: z.string(),

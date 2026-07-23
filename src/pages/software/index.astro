@@ -4,7 +4,10 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BoxItem from "../../components/BoxItem.astro";
 
-const allSoftwareEntries = await getCollection("software");
+const allSoftwareEntries = (await getCollection("software")).sort(
+  (a, b) =>
+    new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime(),
+);
 ---
 
 <Layout>
@@ -12,16 +15,25 @@ const allSoftwareEntries = await getCollection("software");
     <h2>Software Experience</h2>
     <div class="software-items">
       {
-        allSoftwareEntries.map((entry) => (
-          <BoxItem
-            class="item"
-            href="//JTM fix this"
-            subtitle={entry.data.subtitle}
-            title={entry.data.title}
-          >
-            <Image alt={entry.data.title} src={entry.data.logo} width="100" />
-          </BoxItem>
-        ))
+        allSoftwareEntries.map((entry) => {
+          const startYear = new Date(entry.data.startDate).getFullYear();
+          const endYear = new Date(entry.data.endDate).getFullYear();
+          const isSameYear = startYear === endYear;
+          const dateRange = isSameYear
+            ? startYear
+            : `${startYear} - ${endYear}`;
+
+          return (
+            <BoxItem
+              class="item"
+              href="//JTM fix this"
+              subtitle={entry.data.subtitle}
+              title={`${entry.data.title} (${dateRange})`}
+            >
+              <Image alt={entry.data.title} src={entry.data.logo} width="100" />
+            </BoxItem>
+          );
+        })
       }
     </div>
   </div>
