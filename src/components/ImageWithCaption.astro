@@ -12,8 +12,8 @@ const { alt, caption, src } = Astro.props;
 ---
 
 <div class="container">
-  <Image alt={alt} src={src} />
-  <div class="caption">{caption}</div>
+  <Image alt={alt} layout="full-width" src={src} width={1000} />
+  {caption && <div class="caption">{caption}</div>}
 </div>
 
 <style>

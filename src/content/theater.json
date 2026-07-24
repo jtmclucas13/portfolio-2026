@@ -1,0 +1,344 @@
+[
+  {
+    "blurbs": [
+      {
+        "author": "Suzanne Cloud, Broad Street Review",
+        "link": "https://www.broadstreetreview.com/articles/south-camden-theatre-company-presents-marie-joness-stones-in-his-pockets",
+        "quote": "McLucas…did a careful study of how this production should flow, and his expert attention shows…Stones in His Pockets…is a must-see."
+      }
+    ],
+    "by": "Marie Jones",
+    "directedBy": "Joshua McLucas",
+    "id": "stones",
+    "photos": [
+      {
+        "image": "../assets/stones-in-his-pockets.jpg",
+        "photographer": "Robert Bingaman"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "11-01-2019",
+    "role": null,
+    "theater": "South Camden Theatre Company - Camden, NJ",
+    "title": "Stones in His Pockets"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Brad Rothbart, Broad Street Review",
+        "link": "https://www.broadstreetreview.com/articles/philly-fringe-2019-on-the-rocks-presents-our-ouija-board",
+        "quote": "…a glorious piece of theatrical fuckery."
+      }
+    ],
+    "by": "Haygen-Brice Walker",
+    "directedBy": "Elaina Di Monaco",
+    "id": "ouija",
+    "photos": [
+      {
+        "image": "../assets/our-ouija-board-2.jpg",
+        "photographer": "Georgia Wescott"
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "09-22-2019",
+    "role": "Rush",
+    "theater": "On The Rocks, Asian Arts Initiative - Philadelphia, PA",
+    "title": "our ouija board, the games we played, the shit we conjured, & the dead dude we hate-fucked"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Toby Zinman, Philadelphia Inquirer",
+        "link": "https://www.inquirer.com/arts/theater/pure-medea-sheila-murnaghan-automatic-arts-20190509.html",
+        "quote": "McLucas…does crank up his Jason…we see some actual acting."
+      }
+    ],
+    "by": "Josh McIlvain",
+    "directedBy": "Josh McIlvain",
+    "id": "medea",
+    "photos": [
+      {
+        "image": "../assets/pure-medea.jpg",
+        "photographer": "Ceilidh Madigan"
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "03-09-2019",
+    "role": "Jason/Dan",
+    "theater": "Automatic Arts, Christ Church Neighborhood House - Philadelphia, PA",
+    "title": "Pure Medea"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Bonaly, Bonaly Reviews",
+        "link": "https://bonalysite.wordpress.com/2018/09/22/on-the-rocks-wolfcrush-a-queer-werewolf-play/",
+        "quote": "McLucas navigated characters with internalized systemic sexism, racism, and homophobia with humanity...portraying [a] specific and heart wrenching character arc."
+      },
+      {
+        "author": "Cameron Kelsall, Broad Street Review",
+        "link": "https://www.broadstreetreview.com/articles/philly-fringe-2018-on-the-rocks-haygen-brice-walker-wolfcrush-a-queer-werew",
+        "quote": "McLucas...communicate[s] the duality of [his] character with practiced ease."
+      }
+    ],
+    "by": "Haygen-Brice Walker",
+    "directedBy": "Elaina Di Monaco",
+    "id": "wolfcrush",
+    "photos": [
+      {
+        "image": "../assets/wolfcrush.jpg",
+        "photographer": "Campbell O'Hare"
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "09-22-2018",
+    "role": "Huck",
+    "theater": "On The Rocks, Vox Populi - Philadelphia, PA",
+    "title": "Wolfcrush: A Queer Werewolf Play"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Deb Miller, DC Metro Theater Arts",
+        "link": null,
+        "quote": "McLucas as the best man is a study in laughable libidinous machismo."
+      }
+    ],
+    "by": "Haygen-Brice Walker",
+    "directedBy": "Elaina Di Monaco",
+    "id": "bride",
+    "photos": [
+      {
+        "image": "../assets/the-bride.jpg",
+        "photographer": "Jenna Kuerzi"
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "09-08-2017",
+    "role": "Fred",
+    "theater": "On The Rocks, The Beard Cave - Philadelphia, PA",
+    "title": "The Groom's a Fag; The Bride's a Cunt; The Best Man's a Whore; and the Maiden of Honor (Just) Hung Herself in the Closet"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Sally Friedman, The Intelligencer",
+        "link": null,
+        "quote": "The South Camden Theatre Company production proves that an ambitious company — and one in a unlikely location — can still inspire, lead us to question, remind us of our innate conflicts, and most of all, help us to remember that family, no matter how harmonious or conflicted, is a taproot for us all."
+      },
+      {
+        "author": "Tim Dunleavy, DC Metro Theater Arts",
+        "link": null,
+        "quote": "South Camden Theatre Company's stark production, directed in a straightforward fashion by Josh McLucas, tells the story in a quietly powerful fashion...it sparkles with life..."
+      }
+    ],
+    "by": "Aaron Posner",
+    "directedBy": "Joshua McLucas",
+    "id": "asher",
+    "photos": [
+      {
+        "image": "../assets/asher-lev.jpg",
+        "photographer": "Robert Bingaman"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "03-05-2017",
+    "role": null,
+    "theater": "South Camden Theatre Company - Camden, NJ",
+    "title": "My Name Is Asher Lev"
+  },
+  {
+    "blurbs": [],
+    "by": "[redacted] Theater Company",
+    "directedBy": "Joshua McLucas",
+    "id": "wasting-time",
+    "photos": [
+      {
+        "image": "../assets/art-of-wasting-time.png",
+        "photographer": null
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "04-08-2016",
+    "role": null,
+    "theater": "[redacted] Theater Company, The Rotunda - Philadelphia, PA",
+    "title": "The Art of Wasting Time"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Deb Miller, Phindie",
+        "link": "https://phindie.com/11956-11956-the-mechanical-theater-brings-richard-iii-to-laurel-hill-cemetery/",
+        "quote": "The five supporting actors...are thoroughly skilled in their facility with the Elizabethan language, and compelling in their understanding of the characters' emotions and motivations"
+      }
+    ],
+    "by": "William Shakespeare",
+    "directedBy": "Josh Hitchens",
+    "id": "richard-iii",
+    "photos": [
+      {
+        "image": "../assets/richard-iii-laurel-hill.png",
+        "photographer": null
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "07-15-2016",
+    "role": "George/King Edward IV/Bishop of Ely",
+    "theater": "The Mechanical Theater, Laurel Hill Cemetery - Philadelphia, PA",
+    "title": "Richard III"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Ruth K Brown, New Jersey Stage",
+        "link": "https://www.newjerseystage.com/articles/2016/01/20/review-house-of-blue-leaves-at-south-camden-theatre-company/",
+        "quote": "McLucas gives a strong performance...[he] is clear and believable in the midst of the chaos."
+      }
+    ],
+    "by": "John Guare",
+    "directedBy": "Susan Jami Paschkes",
+    "id": "blue-leaves",
+    "photos": [
+      {
+        "image": "../assets/house-of-blue-leaves.jpg",
+        "photographer": "Gus Orr"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "01-31-2016",
+    "role": "Ronnie Shaughnessy",
+    "theater": "South Camden Theatre Company - Camden, NJ",
+    "title": "The House of Blue Leaves"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Lisa Panzer, Phindie",
+        "link": "http://phindie.com/9635-charlie-victor-romeo-south-camden-turbulence-ahead/",
+        "quote": "You are advised, before the show takes off, to secure your seat belt. DO it."
+      }
+    ],
+    "by": "Daniels, Berger, and Gregory",
+    "directedBy": "Joe Paprzycki, assisted by Joshua McLucas",
+    "id": "cvr",
+    "photos": [
+      {
+        "image": "../assets/charlie-victor-romeo.png",
+        "photographer": "Gus Orr"
+      }
+    ],
+    "premiere": "Regional",
+    "premiereDate": "10-16-2015",
+    "role": null,
+    "theater": "South Camden Theatre Company - Camden, NJ",
+    "title": "Charlie Victor Romeo"
+  },
+  {
+    "blurbs": [],
+    "by": "Evelyn Swift Shuker",
+    "directedBy": "Joshua McLucas, Evelyn Swift Shuker, Madeline Charne",
+    "id": "damned-body-meat",
+    "photos": [
+      {
+        "image": "../assets/this-damned-body-meat.png",
+        "photographer": "Dave Garrett Sarrafian"
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "08-28-2015",
+    "role": null,
+    "theater": "[redacted] Theater Company, Maas Building - Philadelphia, PA",
+    "title": "This Damned Body is Carved Out of Meat"
+  },
+  {
+    "blurbs": [
+      {
+        "author": "Christopher Munden, Phindie",
+        "link": "https://phindie.com/8525-8525-mercury-fur-brainspunk-the-hills-are-alive-with-the-sound-of-post-apocalyptic-horror/",
+        "quote": "McLucas stands out in a role premiered by British actor Ben Whishaw, displaying some of that now-famous actor's charm and depth."
+      }
+    ],
+    "by": "Philip Ridley",
+    "directedBy": "Josh Hitchens",
+    "id": "mercury-fur-philly",
+    "photos": [
+      {
+        "image": "../assets/mercury-fur-brainspunk.png",
+        "photographer": "Ashley Smith/Wide Eyed Studios"
+      }
+    ],
+    "premiere": "Philadelphia",
+    "premiereDate": "07-23-2015",
+    "role": "Elliot",
+    "theater": "BrainSpunk Theater, The Papermill Theater - Philadelphia, PA",
+    "title": "Mercury Fur"
+  },
+  {
+    "blurbs": [],
+    "by": "Philip Ridley",
+    "directedBy": "Joshua McLucas",
+    "id": "mercury-fur-swarthmore",
+    "photos": [
+      {
+        "image": "../assets/mercury-fur-swarthmore.jpg",
+        "photographer": "Steve Weinik"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "04-24-2015",
+    "role": null,
+    "theater": "Lang Performing Arts Center Frear Theater - Swarthmore, PA",
+    "title": "Mercury Fur"
+  },
+  {
+    "blurbs": [],
+    "by": "Michael West",
+    "directedBy": "Alex Torra",
+    "id": "dublin-by-lamplight",
+    "photos": [
+      {
+        "image": "../assets/dublin-by-lamplight.png",
+        "photographer": "Steve Weinik"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "02-27-2015",
+    "role": "Willy & Others",
+    "theater": "Lang Performing Arts Center Frear Theater - Swarthmore, PA",
+    "title": "Dublin By Lamplight"
+  },
+  {
+    "blurbs": [],
+    "by": "Evelyn Swift Shuker",
+    "directedBy": "Evelyn Swift Shuker",
+    "id": "juniper-street",
+    "photos": [
+      {
+        "image": "../assets/juniper-street.png",
+        "photographer": null
+      }
+    ],
+    "premiere": "World",
+    "premiereDate": "08-22-2014",
+    "role": "Harry",
+    "theater": "[redacted] Theater Company, An Apartment in West Philly - Philadelphia, PA",
+    "title": "Juniper Street: A Sleepover Play"
+  },
+  {
+    "blurbs": [],
+    "by": "William Shakespeare",
+    "directedBy": "Joshua McLucas",
+    "id": "titus-swarthmore",
+    "photos": [
+      {
+        "image": "../assets/titus-swarthmore.png",
+        "photographer": "Martin Froger-Silva"
+      }
+    ],
+    "premiere": null,
+    "premiereDate": "03-21-2014",
+    "role": null,
+    "theater": "Lang Performing Arts Center Pearson-Hall Theater - Swarthmore, PA",
+    "title": "Titus Andronicus"
+  }
+]

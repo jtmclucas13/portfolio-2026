@@ -34,4 +34,32 @@ const software = defineCollection({
     }),
 });
 
-export const collections = { software, writing };
+const theater = defineCollection({
+  loader: file("./src/content/theater.json"),
+  schema: ({ image }) =>
+    z.object({
+      blurbs: z.array(
+        z.object({
+          author: z.string(),
+          link: z.string().nullable(),
+          quote: z.string(),
+        }),
+      ),
+      by: z.string(),
+      directedBy: z.string(),
+      id: z.string(),
+      photos: z.array(
+        z.object({
+          image: image(),
+          photographer: z.string().nullable(),
+        }),
+      ),
+      premiere: z.string().nullable(),
+      premiereDate: z.string(),
+      role: z.string().nullable(),
+      theater: z.string(),
+      title: z.string(),
+    }),
+});
+
+export const collections = { software, theater, writing };

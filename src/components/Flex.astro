@@ -2,7 +2,7 @@
 interface Props {
   align?: "start" | "center" | "end" | "stretch";
   class?: string;
-  direction?: "row" | "column";
+  direction?: "row" | "column" | "row-reverse";
   gap?: number;
   grow?: boolean;
   justify?: "start" | "center" | "end" | "between" | "around";
@@ -44,6 +44,10 @@ const {
 
   .row {
     flex-direction: row;
+  }
+
+  .row-reverse {
+    flex-direction: row-reverse;
   }
 
   .column {
