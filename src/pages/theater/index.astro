@@ -12,6 +12,56 @@ const allTheaterEntries = (await getCollection("theater")).sort(
 );
 ---
 
+<script>
+  function isHTMLElement(element: Element | null) {
+    return !!element && element instanceof HTMLElement;
+  }
+
+  function showItem(element: Element) {
+    if (!isHTMLElement(element)) {
+      return;
+    }
+
+    element.style.display = "block";
+  }
+
+  function hideItem(element: Element) {
+    if (!isHTMLElement(element)) {
+      return;
+    }
+
+    element.style.display = "none";
+  }
+
+  const radioButtons = document.querySelectorAll('input[name="filter"]');
+
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+
+      if (target.checked) {
+        const newValue = target.value;
+        const directingItems = document.querySelectorAll(
+          '[data-type="directing"]',
+        );
+        const actingItems = document.querySelectorAll('[data-type="acting"]');
+
+        document.startViewTransition(() => {
+          if (newValue === "all") {
+            [...directingItems, ...actingItems].forEach(showItem);
+          } else if (newValue === "directing") {
+            actingItems.forEach(hideItem);
+            directingItems.forEach(showItem);
+          } else if (newValue === "acting") {
+            directingItems.forEach(hideItem);
+            actingItems.forEach(showItem);
+          }
+        });
+      }
+    });
+  });
+</script>
+
 <Layout>
   <div class="content">
     <header>
@@ -19,22 +69,26 @@ const allTheaterEntries = (await getCollection("theater")).sort(
       <div class="radio-filters">
         <div>
           <label
-            ><input type="radio" />All<span class="radio-button"></span></label
+            ><input checked name="filter" type="radio" value="all" />All<span
+              class="radio-button"></span></label
           >
           <label
-            ><input type="radio" />Acting<span class="radio-button"
-            ></span></label
+            ><input name="filter" type="radio" value="acting" />Acting<span
+              class="radio-button"></span></label
           >
           <label
-            ><input type="radio" />Directing<span class="radio-button"
-            ></span></label
+            ><input
+              name="filter"
+              type="radio"
+              value="directing"
+            />Directing<span class="radio-button"></span></label
           >
         </div>
       </div>
     </header>
     {
       allTheaterEntries.map((entry, index) => (
-        <>
+        <div data-type={entry.data.role === null ? "directing" : "acting"}>
           <Flex direction={index % 2 === 0 ? "row" : "row-reverse"} gap={2}>
             {entry.data.photos.length > 0 && (
               <div class="image">
@@ -73,7 +127,7 @@ const allTheaterEntries = (await getCollection("theater")).sort(
             </Flex>
           </Flex>
           <hr />
-        </>
+        </div>
       ))
     }
   </div>
@@ -206,11 +260,11 @@ const allTheaterEntries = (await getCollection("theater")).sort(
   }
 
   .entry-content {
-    flex: 1;
+    flex: 2;
   }
 
   .image {
-    flex: 2;
+    flex: 3;
   }
 
   hr {
@@ -218,5 +272,17 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     border: none;
     height: 1px;
     margin: 2rem 0;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
   }
 </style>
