@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import LinkButton from "../../components/LinkButton.astro";
+import Flex from "../../components/Flex.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("software");
@@ -19,132 +20,123 @@ const isSameYear = startYear === endYear;
 const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
 ---
 
-<Layout>
-  <div class="container">
-    <div class="header">
+<Layout maxWidth={1200}>
+  <Flex align="center" justify="between">
+    <Flex align="center" gap={1.5}>
       <Image alt={entry.data.title} src={entry.data.logo} width="100" />
-      <div>
+      <Flex direction="column">
         <h2>
           <a href={entry.data.link} target="_blank">{entry.data.title}</a>
         </h2>
         <p class="date">{dateRange}</p>
+      </Flex>
+    </Flex>
+    <LinkButton href="/software" theme="secondary"
+      ><span class="icon">arrow_back</span>All Projects</LinkButton
+    >
+  </Flex>
+  <div class="content">
+    <div>
+      <p>{entry.data.description}</p>
+      <div class="button-group">
+        <LinkButton href="/contact"
+          ><span class="icon">send</span>Contact Me</LinkButton
+        >
       </div>
     </div>
-    <div class="content">
+    <aside>
       <div>
-        <p>{entry.data.description}</p>
-        <div class="button-group">
-          <LinkButton href="/software" theme="secondary"
-            ><span class="icon">arrow_back</span>All Projects</LinkButton
-          >
-          <LinkButton href="/contact"
-            ><span class="icon">send</span>Contact Me</LinkButton
-          >
-        </div>
+        <h3>Technologies Used</h3>
+        {
+          entry.data.technologies.map((tech) => (
+            <div class="tech-item">
+              <Image alt={tech.name} src={tech.logo} width={30} />
+              {tech.name}
+            </div>
+          ))
+        }
       </div>
-      <aside>
-        <div>
-          <h3>Technologies Used</h3>
-          {
-            entry.data.technologies.map((tech) => (
-              <div class="tech-item">
-                <Image alt={tech.name} src={tech.logo} width={30} />
-                {tech.name}
-              </div>
-            ))
-          }
-        </div>
-      </aside>
-    </div>
+    </aside>
   </div>
-</Layout>
 
-<style>
-  .container {
-    padding: 2rem;
-  }
+  <style>
+    .content {
+      display: flex;
+      gap: 4rem;
+      margin-top: 1.5rem;
 
-  .header {
-    align-items: center;
-    display: flex;
-    gap: 16px;
-    margin-bottom: 1rem;
-  }
+      > div {
+        flex: 2;
+      }
 
-  .content {
-    display: flex;
-    gap: 2rem;
+      aside {
+        flex: 1;
+      }
+    }
 
-    > div {
-      flex: 2;
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      padding-top: 1rem;
     }
 
     aside {
-      flex: 1;
-    }
-  }
+      border-image-outset: 34px;
+      border: 20px solid transparent;
+      border-image: url("../../assets/lace-border.png") 34 round;
+      color: var(--color-secondary);
+      flex: 1 1 50%;
+      text-align: center;
 
-  .button-group {
-    display: flex;
-    gap: 1rem;
-  }
+      h3 {
+        margin-bottom: 1rem;
+      }
 
-  aside {
-    border-image-outset: 34px;
-    border: 20px solid transparent;
-    border-image: url("../../assets/lace-border.png") 34 round;
-    color: var(--color-secondary);
-    flex: 1 1 50%;
-    text-align: center;
-
-    h3 {
-      margin-bottom: 1rem;
+      > div {
+        background-color: var(--color-black);
+        height: 100%;
+        padding: 2rem;
+        width: 100%;
+      }
     }
 
-    > div {
-      background-color: var(--color-black);
-      height: 100%;
-      padding: 2rem;
-      width: 100%;
-    }
-  }
+    .tech-item {
+      align-items: center;
+      display: flex;
+      font-size: 1.25rem;
+      gap: 16px;
 
-  .tech-item {
-    align-items: center;
-    display: flex;
-    font-size: 1.25rem;
-    gap: 16px;
-
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .icon {
-    font-family: var(--font-icon);
-  }
-
-  .date {
-    font-style: italic;
-    margin-bottom: 0;
-  }
-
-  .link-with-icon {
-    align-items: center;
-    display: inline-flex;
-    gap: 4px;
-  }
-
-  a {
-    text-decoration: underline;
-
-    &:hover {
-      color: var(--color-primary);
-      text-decoration: none;
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
 
     .icon {
-      padding-right: 4px;
+      font-family: var(--font-icon);
     }
-  }
-</style>
+
+    .date {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    .link-with-icon {
+      align-items: center;
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .icon {
+        padding-right: 4px;
+      }
+    }
+  </style>
+</Layout>

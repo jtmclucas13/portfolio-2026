@@ -6,13 +6,14 @@ interface Props {
   alt: string;
   caption: string;
   src: ImageMetadata;
+  width: number;
 }
 
-const { alt, caption, src } = Astro.props;
+const { alt, caption, src, width } = Astro.props;
 ---
 
 <div class="container">
-  <Image alt={alt} layout="full-width" src={src} width={1000} />
+  <Image alt={alt} layout="full-width" src={src} width={width} />
   {caption && <div class="caption">{caption}</div>}
 </div>
 

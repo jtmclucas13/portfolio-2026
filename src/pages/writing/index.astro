@@ -7,7 +7,7 @@ const allPosts = (await getCollection("writing")).sort(
 );
 ---
 
-<Layout>
+<Layout maxWidth={1000}>
   <div class="content">
     <h2>Writing</h2>
     <ul>
@@ -37,10 +37,8 @@ const allPosts = (await getCollection("writing")).sort(
 
 <style>
   .content {
-    padding: 2rem;
-
     h2 {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
 
     a {
@@ -50,10 +48,6 @@ const allPosts = (await getCollection("writing")).sort(
         color: var(--color-primary);
         text-decoration: none;
       }
-    }
-
-    ul {
-      padding: 0 2rem;
     }
 
     li {

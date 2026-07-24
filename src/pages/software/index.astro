@@ -10,47 +10,39 @@ const allSoftwareEntries = (await getCollection("software")).sort(
 );
 ---
 
-<Layout>
-  <div class="content">
-    <h2>Software Experience</h2>
-    <div class="software-items">
-      {
-        allSoftwareEntries.map((entry) => {
-          const startYear = new Date(entry.data.startDate).getFullYear();
-          const endYear = new Date(entry.data.endDate).getFullYear();
-          const isSameYear = startYear === endYear;
-          const dateRange = isSameYear
-            ? startYear
-            : `${startYear} - ${endYear}`;
+<Layout maxWidth={1200}>
+  <h2>Software Experience</h2>
+  <div class="software-items">
+    {
+      allSoftwareEntries.map((entry) => {
+        const startYear = new Date(entry.data.startDate).getFullYear();
+        const endYear = new Date(entry.data.endDate).getFullYear();
+        const isSameYear = startYear === endYear;
+        const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
 
-          return (
-            <BoxItem
-              class="item"
-              href={`/software/${entry.id}`}
-              subtitle={entry.data.subtitle}
-              title={`${entry.data.title} (${dateRange})`}
-            >
-              <Image alt={entry.data.title} src={entry.data.logo} width="100" />
-            </BoxItem>
-          );
-        })
-      }
-    </div>
+        return (
+          <BoxItem
+            class="item"
+            href={`/software/${entry.id}`}
+            subtitle={entry.data.subtitle}
+            title={`${entry.data.title} (${dateRange})`}
+          >
+            <Image alt={entry.data.title} src={entry.data.logo} width="100" />
+          </BoxItem>
+        );
+      })
+    }
   </div>
 </Layout>
 
 <style>
-  .content {
-    padding: 2rem;
-
-    h2 {
-      margin-bottom: 1rem;
-    }
+  h2 {
+    margin-bottom: 1rem;
   }
 
   .software-items {
     display: grid;
-    grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
-    gap: 2rem;
+    grid-template-columns: calc(50% - 1.5rem) calc(50% - 1.5rem);
+    gap: 2rem 3rem;
   }
 </style>

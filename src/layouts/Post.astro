@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
 const { date, timeToRead, title } = Astro.props;
 ---
 
-<Layout>
+<Layout maxWidth={1000}>
   <div class="header">
     <LinkButton href="/writing"
       ><span class="icon">arrow_back</span>All Posts</LinkButton
@@ -30,8 +30,6 @@ const { date, timeToRead, title } = Astro.props;
 
 <style>
   .content {
-    padding: 1.5rem 2rem;
-
     ul {
       li {
         font-size: 1.25rem;
@@ -60,7 +58,7 @@ const { date, timeToRead, title } = Astro.props;
   }
 
   .header {
-    padding: 2rem 2rem 0;
+    margin-bottom: 1.5rem;
 
     a {
       margin-bottom: 1rem;

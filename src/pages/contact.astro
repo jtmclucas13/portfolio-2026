@@ -95,77 +95,69 @@ import Socials from "../components/Socials.astro";
 </script>
 
 <Layout>
-  <div class="content">
-    <h2>Contact Me</h2>
-    <Flex align="end" gap={2} grow>
-      <div class="success">
+  <h2>Contact Me</h2>
+  <Flex align="end" gap={2} grow>
+    <div class="success">
+      <BoxItem
+        icon="check_circle"
+        title="Thank you!"
+        subtitle="I'll get back to you as soon as I can"
+        theme="success"
+      />
+    </div>
+    <form data-netlify="true" data-netlify-honeypot="bot-field">
+      <div>
+        <label>Name<input maxlength="1000" name="name" /></label>
+        <div class="field-error-element" data-field="name"></div>
+      </div>
+      <div>
+        <label>Email<input maxlength="1000" name="email" type="email" /></label>
+        <div class="field-error-element" data-field="email"></div>
+      </div>
+      <div>
+        <label>Subject<input maxlength="1000" name="subject" /></label>
+        <div class="field-error-element" data-field="subject"></div>
+      </div>
+      <div>
+        <label
+          >Message<textarea maxlength="20000" name="message" rows="5"
+          ></textarea></label
+        >
+        <div class="field-error-element" data-field="message"></div>
+      </div>
+
+      <input
+        name="bot-field"
+        style={{
+          visibility: "hidden",
+          height: 0,
+          margin: 0,
+          padding: 0,
+          border: 0,
+        }}
+      />
+      <div class="error">
         <BoxItem
-          icon="check_circle"
-          title="Thank you!"
-          subtitle="I'll get back to you as soon as I can"
-          theme="success"
+          icon="error"
+          title="Uh-oh!"
+          subtitle="There was an error sending your message. Please try again, or contact me via social media."
+          theme="danger"
         />
       </div>
-      <form data-netlify="true" data-netlify-honeypot="bot-field">
-        <div>
-          <label>Name<input maxlength="1000" name="name" /></label>
-          <div class="field-error-element" data-field="name"></div>
-        </div>
-        <div>
-          <label
-            >Email<input maxlength="1000" name="email" type="email" /></label
-          >
-          <div class="field-error-element" data-field="email"></div>
-        </div>
-        <div>
-          <label>Subject<input maxlength="1000" name="subject" /></label>
-          <div class="field-error-element" data-field="subject"></div>
-        </div>
-        <div>
-          <label
-            >Message<textarea maxlength="20000" name="message" rows="5"
-            ></textarea></label
-          >
-          <div class="field-error-element" data-field="message"></div>
-        </div>
-
-        <input
-          name="bot-field"
-          style={{
-            visibility: "hidden",
-            height: 0,
-            margin: 0,
-            padding: 0,
-            border: 0,
-          }}
-        />
-        <div class="error">
-          <BoxItem
-            icon="error"
-            title="Uh-oh!"
-            subtitle="There was an error sending your message. Please try again, or contact me via social media."
-            theme="danger"
-          />
-        </div>
-        <Button type="submit"><span class="icon">send</span>Send Email</Button>
-      </form>
-      <Flex align="center" direction="column" gap={5} grow justify="center">
-        <Socials gap={3} />
-        <LinkButton
-          href="McLucas - Professional Resume.pdf"
-          download="McLucas - Professional Resume"
-          ><span class="icon">download</span>Download my resume</LinkButton
-        >
-      </Flex>
+      <Button type="submit"><span class="icon">send</span>Send Email</Button>
+    </form>
+    <Flex align="center" direction="column" gap={5} grow justify="center">
+      <Socials gap={3} />
+      <LinkButton
+        href="McLucas - Professional Resume.pdf"
+        download="McLucas - Professional Resume"
+        ><span class="icon">download</span>Download my resume</LinkButton
+      >
     </Flex>
-  </div>
+  </Flex>
 </Layout>
 
 <style>
-  .content {
-    padding: 2rem;
-  }
-
   form {
     display: flex;
     flex-direction: column;

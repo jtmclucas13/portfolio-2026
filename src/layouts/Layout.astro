@@ -1,8 +1,15 @@
 ---
+interface Props {
+  maxWidth?: number;
+  withGlobalPadding?: boolean;
+}
+
 import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Socials from "../components/Socials.astro";
 import HiMark from "../assets/hi-mark.svg";
+
+const { maxWidth, withGlobalPadding = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +20,13 @@ import HiMark from "../assets/hi-mark.svg";
   <body>
     <div>
       <Header />
-      <div class="content">
+      <div
+        class:list={["content", { withGlobalPadding }]}
+        style={{
+          margin: maxWidth ? "auto" : undefined,
+          maxWidth: maxWidth ? `${maxWidth}px` : undefined,
+        }}
+      >
         <slot />
       </div>
     </div>
@@ -47,6 +60,10 @@ import HiMark from "../assets/hi-mark.svg";
   .content {
     display: flex;
     flex-direction: column;
+
+    &.withGlobalPadding {
+      padding: 2rem;
+    }
   }
 
   footer {
