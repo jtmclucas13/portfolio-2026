@@ -101,6 +101,11 @@ const allTheaterEntries = (await getCollection("theater")).sort(
                   }
                   src={entry.data.photos[0]!.image}
                 />
+                {entry.data.premiere && (
+                  <div class="premiere-banner">
+                    {entry.data.premiere} Premiere
+                  </div>
+                )}
               </div>
             )}
             <Flex class="entry-content" direction="column" gap={2}>
@@ -265,6 +270,8 @@ const allTheaterEntries = (await getCollection("theater")).sort(
 
   .image {
     flex: 3;
+    position: relative;
+    overflow: hidden;
   }
 
   hr {
@@ -274,15 +281,17 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     margin: 2rem 0;
   }
 
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-  }
-
-  @keyframes fade-out {
-    to {
-      opacity: 0;
-    }
+  .premiere-banner {
+    background-color: var(--color-secondary);
+    color: var(--color-black);
+    font-family: var(--font-cursive);
+    font-size: 2rem;
+    padding: 0.75rem 0;
+    position: absolute;
+    right: -50%;
+    text-align: center;
+    top: 75px;
+    transform: translateX(-50%) rotate(45deg);
+    width: 500px;
   }
 </style>
