@@ -1,0 +1,101 @@
+---
+import Badge from "../components/Badge.astro";
+import Layout from "../layouts/Layout.astro";
+import Instagram from "../assets/instagram.svg";
+import TikTok from "../assets/tiktok.svg";
+import AOTY from "../assets/aoty.svg";
+import Flex from "../components/Flex.astro";
+---
+
+<Layout maxWidth={1200}>
+  <div class="header">
+    <h2>
+      <a
+        href="https://www.youtube.com/@ThePulseOfMusic"
+        rel="noreferrer noorigin"
+        target="_blank">The Pulse of Music</a
+      >
+    </h2>
+  </div>
+  <div class="content">
+    <div class="description">
+      <Badge class="badge" icon="pause">On Hiatus</Badge>
+      <p>
+        I've got my finger on the pulse of music! On this music review/reaction
+        channel I streamed track-by-track album reviews, primarily of alt,
+        heavy, and emo music. I chopped up the live stream clips for social
+        media, creating a constant drip of content in between the larger
+        multi-hour streams that occurred weekly.
+      </p>
+      <Flex align="center" gap={1} justify="center">
+        <a
+          href="https://www.instagram.com/the.pulse.of.music/"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <Instagram class="logo" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@the.pulse.of.music"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <TikTok class="logo" />
+        </a>
+        <a
+          href="https://www.albumoftheyear.org/user/heartstrings93/"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          <AOTY class="logo" />
+        </a>
+      </Flex>
+    </div>
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/Srmxz4691Y8?si=VNBABvCrangJzaXK"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+</Layout>
+
+<style>
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .content {
+    display: flex;
+    gap: 4rem;
+
+    > div,
+    > iframe {
+      flex: 1;
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo {
+    fill: var(--color-black);
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out;
+    width: 75px;
+
+    &:hover {
+      fill: color-mix(in srgb, var(--color-black), #fff 20%);
+    }
+  }
+</style>

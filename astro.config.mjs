@@ -47,6 +47,8 @@ export default defineConfig({
             "drafts",
             "edit_document",
             "open_in_new",
+            "play_circle",
+            "pause",
           ],
         },
       },

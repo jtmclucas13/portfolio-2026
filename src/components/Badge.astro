@@ -1,0 +1,44 @@
+---
+interface Props {
+  class?: string;
+  icon?: string;
+  theme?: "outlined" | "solid";
+}
+
+const { class: className, icon, theme = "solid" } = Astro.props;
+---
+
+<div class:list={["badge-container", theme, className]}>
+  <span class="icon">{icon}</span>
+  <slot />
+</div>
+
+<style>
+  .badge-container {
+    align-items: center;
+    border-radius: 50px;
+    color: var(--color-white);
+    display: inline-flex;
+    font-size: 1rem;
+    gap: 8px;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    text-transform: uppercase;
+    width: max-content;
+
+    &.solid {
+      background-color: var(--color-primary);
+    }
+
+    &.outlined {
+      border: 2px solid var(--color-black);
+      color: var(--color-black);
+    }
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+    fill: var(--color-white);
+    text-transform: none;
+  }
+</style>
