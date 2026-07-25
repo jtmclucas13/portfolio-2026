@@ -43,7 +43,7 @@ export default defineConfig({
             "download",
             "home",
             "computer",
-            "comedy_mask",
+            "theater_comedy",
             "drafts",
             "edit_document",
             "open_in_new",

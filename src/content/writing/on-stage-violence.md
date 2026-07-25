@@ -1,4 +1,5 @@
 ---
+category: "Theater"
 date: "2014-12-09"
 description: "A reflection on the merits and consequences of staging violence in the modern era."
 title: "On (stage) Violence"

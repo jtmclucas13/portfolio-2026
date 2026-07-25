@@ -1,4 +1,5 @@
 ---
+category: "Theater"
 date: "07-14-2014"
 description: "A new type of fringe festival is required: a treatise on affordability, equality, and accessibility."
 title: "A Time For Everything – the fringe/fringe Festival"

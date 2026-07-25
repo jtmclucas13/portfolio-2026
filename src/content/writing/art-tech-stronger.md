@@ -1,4 +1,5 @@
 ---
+category: "Tech"
 date: "2016-09-02"
 description: "The two sectors of my life and career may seem unrelated, but in fact, art and technology may hold the keys that unlock each other."
 title: "Art + Tech: Stronger Together"

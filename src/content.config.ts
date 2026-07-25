@@ -5,6 +5,7 @@ import { z } from "astro/zod";
 const writing = defineCollection({
   loader: glob({ base: "./src/content/writing", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
+    category: z.enum(["Tech", "Theater"]),
     title: z.string(),
     description: z.string(),
     date: z.string(),

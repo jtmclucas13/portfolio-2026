@@ -1,4 +1,5 @@
 ---
+category: "Theater"
 date: "06-08-2014"
 description: "Truth, vulnerability, and attempting connection collide in [redacted]'s first show, Earnestness #2."
 title: "Earnestness #2 and Deserving Attention From Strangers"

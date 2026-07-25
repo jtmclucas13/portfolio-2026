@@ -2,14 +2,20 @@
 interface Props {
   class?: string;
   icon?: string;
+  size?: "medium" | "small";
   theme?: "outlined" | "solid";
 }
 
-const { class: className, icon, theme = "solid" } = Astro.props;
+const {
+  class: className,
+  icon,
+  size = "medium",
+  theme = "solid",
+} = Astro.props;
 ---
 
-<div class:list={["badge-container", theme, className]}>
-  <span class="icon">{icon}</span>
+<div class:list={["badge-container", size, theme, className]}>
+  {icon && <span class="icon">{icon}</span>}
   <slot />
 </div>
 
@@ -19,12 +25,20 @@ const { class: className, icon, theme = "solid" } = Astro.props;
     border-radius: 50px;
     color: var(--color-white);
     display: inline-flex;
-    font-size: 1rem;
     gap: 8px;
-    padding: 0.5rem 1rem;
     justify-content: center;
     text-transform: uppercase;
     width: max-content;
+
+    &.medium {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    &.small {
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+    }
 
     &.solid {
       background-color: var(--color-primary);

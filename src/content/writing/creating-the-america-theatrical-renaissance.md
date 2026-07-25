@@ -1,4 +1,5 @@
 ---
+category: "Theater"
 date: "05-20-2014"
 description: "Announcing the formation of [redacted] Theater Company, a powerful new force in the Philadelphia theater world."
 title: "Creating the American Theatrical Renaissance"

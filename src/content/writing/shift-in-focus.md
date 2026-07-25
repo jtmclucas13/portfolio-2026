@@ -1,4 +1,5 @@
 ---
+category: "Theater"
 date: "2018-10-18"
 description: "Being a full-time software engineer ain't all it's cracked up to be. Seeking balance, I'm placing theater on equal footing with technology."
 title: "A Shift In Focus"
