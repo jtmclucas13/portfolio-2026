@@ -1,13 +1,15 @@
 ---
 interface Props {
+  category: "Tech" | "Theater";
   date: string;
   timeToRead: string;
   title: string;
 }
+import Badge from "../components/Badge.astro";
 import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
 
-const { date, timeToRead, title } = Astro.props;
+const { category, date, timeToRead, title } = Astro.props;
 ---
 
 <Layout maxWidth={1000}>
@@ -15,13 +17,21 @@ const { date, timeToRead, title } = Astro.props;
     <LinkButton href="/writing"
       ><span class="icon">arrow_back</span>All Posts</LinkButton
     >
-    <h1>{title}</h1>
-    <h2>
-      {
-        `${new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
-      }
-    </h2>
-    <p class="time-to-read">{timeToRead}</p>
+    <div class="metadata">
+      <div>
+        <h1>{title}</h1>
+        <h2>
+          {
+            `${new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`
+          }
+        </h2>
+        <p class="time-to-read">{timeToRead}</p>
+      </div>
+      <Badge icon={category === "Tech" ? "computer" : "theater_comedy"}>
+        {category}
+      </Badge>
+    </div>
+
     <hr />
   </div>
   <div class="content">
@@ -72,6 +82,12 @@ const { date, timeToRead, title } = Astro.props;
     a {
       margin-bottom: 2rem;
     }
+  }
+
+  .metadata {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
   }
 
   .time-to-read {

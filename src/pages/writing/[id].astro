@@ -30,6 +30,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
 <Post
+  category={post.data.category}
   date={post.data.date}
   timeToRead={remarkPluginFrontmatter.minutesRead}
   title={post.data.title}
