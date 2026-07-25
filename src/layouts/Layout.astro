@@ -2,6 +2,7 @@
 interface Props {
   maxWidth?: number;
   withGlobalPadding?: boolean;
+  withHeaderBorder?: boolean;
 }
 
 import Head from "../components/Head.astro";
@@ -9,7 +10,7 @@ import Header from "../components/Header.astro";
 import Socials from "../components/Socials.astro";
 import HiMark from "../assets/hi-mark.svg";
 
-const { maxWidth, withGlobalPadding = true } = Astro.props;
+const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,7 +20,7 @@ const { maxWidth, withGlobalPadding = true } = Astro.props;
   </head>
   <body>
     <div>
-      <Header />
+      <Header withBorder={withHeaderBorder} />
       <div
         class:list={["content", { withGlobalPadding }]}
         style={{

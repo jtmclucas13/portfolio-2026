@@ -1,39 +1,46 @@
 ---
+interface Props {
+  withBorder?: boolean | undefined;
+}
+
 import Chameleon from "../assets/chameleon-2.svg";
 import Flex from "./Flex.astro";
 import Icon from "./Icon.astro";
 
 const currentPath = Astro.url.pathname;
+const { withBorder } = Astro.props;
 ---
 
-<header>
-  <Flex align="center" class="main-header" gap={1}>
-    <Chameleon />
-    <div>
-      <a href="/"><h1>Joshua McLucas</h1></a>
-      <h2 data-carousel class:list={[{ animate: currentPath === "/" }]}>
-        Career Chameleon
-      </h2>
+<header class:list={[{ "with-border": withBorder }]}>
+  <div>
+    <Flex align="center" class="main-header" gap={1}>
+      <Chameleon />
+      <div>
+        <a href="/"><h1>Joshua McLucas</h1></a>
+        <h2 data-carousel class:list={[{ animate: currentPath === "/" }]}>
+          Career Chameleon
+        </h2>
+      </div>
+    </Flex>
+    <div aria-label="Open Navigation" class="hamburger">menu</div>
+    <div aria-hidden="true" class="navigation">
+      <ul>
+        <li><Icon name="home" /><a href="/">Home</a></li>
+        <li>
+          <Icon name="computer" /><a href="/software">Software</a>
+        </li>
+        <li>
+          <Icon name="theater_comedy" /><a href="/theater">Theater</a>
+        </li>
+        <li>
+          <Icon name="edit_note" /><a href="/writing">Writing</a>
+        </li>
+        <li>
+          <Icon name="play_circle" /><a href="/streaming">Streaming</a>
+        </li>
+        <li><Icon name="drafts" /><a href="/contact">Contact</a></li>
+      </ul>
     </div>
-  </Flex>
-  <div aria-label="Open Navigation" class="hamburger">menu</div>
-  <div aria-hidden="true" class="navigation">
-    <ul>
-      <li><Icon name="home" /><a href="/">Home</a></li>
-      <li>
-        <Icon name="computer" /><a href="/software">Software</a>
-      </li>
-      <li>
-        <Icon name="theater_comedy" /><a href="/theater">Theater</a>
-      </li>
-      <li>
-        <Icon name="edit_note" /><a href="/writing">Writing</a>
-      </li>
-      <li>
-        <Icon name="play_circle" /><a href="/streaming">Streaming</a>
-      </li>
-      <li><Icon name="drafts" /><a href="/contact">Contact</a></li>
-    </ul>
   </div>
 </header>
 
@@ -44,7 +51,11 @@ const currentPath = Astro.url.pathname;
     "Software Engineer",
     "Theater Artist",
     "Live Streamer",
+    "Writer",
     "Renaissance Man",
+    "Artist",
+    "Student",
+    "Problem-Solver",
   ];
   let index = 0;
 
@@ -105,12 +116,24 @@ const currentPath = Astro.url.pathname;
 
 <style>
   header {
-    align-items: center;
-    background-color: var(--color-black);
-    color: var(--color-secondary);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
+    &.with-border {
+      border-image-outset: 34px;
+      border-bottom: 20px solid transparent;
+      border-image: url("../assets/lace-border.png") 34 round;
+
+      .content {
+        margin-top: -20px;
+      }
+    }
+
+    > div {
+      align-items: center;
+      background-color: var(--color-black);
+      color: var(--color-secondary);
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
   }
 
   h1 {

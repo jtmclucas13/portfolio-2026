@@ -13,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
 const { category, date, timeToRead, title } = Astro.props;
 ---
 
-<Layout maxWidth={1000}>
+<Layout maxWidth={1000} withHeaderBorder>
   <div class="header">
     <LinkButton href="/writing"><Icon name="arrow_back" />All Posts</LinkButton>
     <div class="metadata">

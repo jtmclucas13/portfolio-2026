@@ -21,7 +21,7 @@ const isSameYear = startYear === endYear;
 const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
 ---
 
-<Layout maxWidth={1200}>
+<Layout maxWidth={1200} withHeaderBorder>
   <Flex align="center" justify="between">
     <Flex align="center" gap={1.5}>
       <Image alt={entry.data.title} src={entry.data.logo} width="100" />
