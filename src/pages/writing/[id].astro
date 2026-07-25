@@ -1,16 +1,31 @@
 ---
 import { getCollection, render } from "astro:content";
 import Post from "../../layouts/Post.astro";
+import LinkButton from "../../components/LinkButton.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writing");
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: { post },
-  }));
+  return posts
+    .sort(
+      (a, b) =>
+        new Date(a.data.date).valueOf() - new Date(b.data.date).valueOf(),
+    )
+    .map((post, index) => {
+      const prevPost = posts[index - 1];
+      const nextPost = posts[index + 1];
+
+      return {
+        params: { id: post.id },
+        props: {
+          nextSlug: nextPost?.id || null,
+          post,
+          prevSlug: prevPost?.id || null,
+        },
+      };
+    });
 }
 
-const { post } = Astro.props;
+const { nextSlug, post, prevSlug } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
@@ -20,4 +35,32 @@ const { Content, remarkPluginFrontmatter } = await render(post);
   title={post.data.title}
 >
   <Content />
+  <div class="button-group">
+    {
+      prevSlug && (
+        <LinkButton href={`/writing/${prevSlug}`}>
+          <span class="icon">arrow_back</span>Previous
+        </LinkButton>
+      )
+    }
+    {
+      nextSlug && (
+        <LinkButton href={`/writing/${nextSlug}`}>
+          Next <span class="icon">arrow_forward</span>
+        </LinkButton>
+      )
+    }
+  </div>
 </Post>
+
+<style>
+  .button-group {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+  }
+</style>
