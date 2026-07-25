@@ -6,6 +6,7 @@ import Flex from "../components/Flex.astro";
 import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
 import Socials from "../components/Socials.astro";
+import Icon from "../components/Icon.astro";
 ---
 
 <script>
@@ -144,14 +145,14 @@ import Socials from "../components/Socials.astro";
           theme="danger"
         />
       </div>
-      <Button type="submit"><span class="icon">send</span>Send Email</Button>
+      <Button type="submit"><Icon name="send" />Send Email</Button>
     </form>
     <Flex align="center" direction="column" gap={5} grow justify="center">
       <Socials gap={3} />
       <LinkButton
         href="McLucas - Professional Resume.pdf"
         download="McLucas - Professional Resume"
-        ><span class="icon">download</span>Download my resume</LinkButton
+        ><Icon name="download" />Download my resume</LinkButton
       >
     </Flex>
   </Flex>
@@ -183,10 +184,6 @@ import Socials from "../components/Socials.astro";
         outline: none;
       }
     }
-  }
-
-  .icon {
-    font-family: var(--font-icon);
   }
 
   .success {

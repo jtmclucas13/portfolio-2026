@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   class?: string;
   icon?: string;
@@ -15,7 +17,7 @@ const {
 ---
 
 <div class:list={["badge-container", size, theme, className]}>
-  {icon && <span class="icon">{icon}</span>}
+  {icon && <Icon class="icon" name={icon} />}
   <slot />
 </div>
 
@@ -51,8 +53,6 @@ const {
   }
 
   .icon {
-    font-family: var(--font-icon);
     fill: var(--color-white);
-    text-transform: none;
   }
 </style>

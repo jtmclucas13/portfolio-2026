@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Post from "../../layouts/Post.astro";
 import LinkButton from "../../components/LinkButton.astro";
+import Icon from "../../components/Icon.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writing");
@@ -40,14 +41,15 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     {
       prevSlug && (
         <LinkButton href={`/writing/${prevSlug}`}>
-          <span class="icon">arrow_back</span>Previous
+          <Icon name="arrow_back" />
+          Previous
         </LinkButton>
       )
     }
     {
       nextSlug && (
         <LinkButton href={`/writing/${nextSlug}`}>
-          Next <span class="icon">arrow_forward</span>
+          Next <Icon name="arrow_forward" />
         </LinkButton>
       )
     }
@@ -59,9 +61,5 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     display: flex;
     gap: 4rem;
     justify-content: center;
-  }
-
-  .icon {
-    font-family: var(--font-icon);
   }
 </style>

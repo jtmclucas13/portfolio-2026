@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string;
+  name: string;
+  size?: number;
+}
+const { class: className, name, size } = Astro.props;
+---
+
+<span
+  class:list={["container", className]}
+  style={{ fontSize: size ? `${size}rem` : undefined }}>{name}</span
+>
+
+<style>
+  .container {
+    font-family: var(--font-icon);
+    text-transform: none;
+  }
+</style>

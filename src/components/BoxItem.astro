@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   class?: string;
   href?: string;
@@ -21,7 +23,7 @@ const Element = href ? "a" : "div";
     )
   }
   <div class="main-content">
-    <span class="title">{icon && <span class="icon">{icon}</span>}{title}</span>
+    <span class="title">{icon && <Icon name={icon} size={1.5} />}{title}</span>
     <span class="subtitle">{subtitle}</span>
   </div>
 </Element>
@@ -52,11 +54,6 @@ const Element = href ? "a" : "div";
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-
-  .icon {
-    font-family: var(--font-icon);
-    font-size: 1.5rem;
   }
 
   .title {

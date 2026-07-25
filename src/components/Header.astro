@@ -1,6 +1,7 @@
 ---
 import Chameleon from "../assets/chameleon-2.svg";
 import Flex from "./Flex.astro";
+import Icon from "./Icon.astro";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -18,20 +19,20 @@ const currentPath = Astro.url.pathname;
   <div aria-label="Open Navigation" class="hamburger">menu</div>
   <div aria-hidden="true" class="navigation">
     <ul>
-      <li><span class="icon">home</span><a href="/">Home</a></li>
+      <li><Icon name="home" /><a href="/">Home</a></li>
       <li>
-        <span class="icon">computer</span><a href="/software">Software</a>
+        <Icon name="computer" /><a href="/software">Software</a>
       </li>
       <li>
-        <span class="icon">theater_comedy</span><a href="/theater">Theater</a>
+        <Icon name="theater_comedy" /><a href="/theater">Theater</a>
       </li>
       <li>
-        <span class="icon">edit_note</span><a href="/writing">Writing</a>
+        <Icon name="edit_note" /><a href="/writing">Writing</a>
       </li>
       <li>
-        <span class="icon">play_circle</span><a href="/streaming">Streaming</a>
+        <Icon name="play_circle" /><a href="/streaming">Streaming</a>
       </li>
-      <li><span class="icon">drafts</span><a href="/contact">Contact</a></li>
+      <li><Icon name="drafts" /><a href="/contact">Contact</a></li>
     </ul>
   </div>
 </header>
@@ -125,10 +126,6 @@ const currentPath = Astro.url.pathname;
     &:hover {
       color: color-mix(in srgb, var(--color-secondary), #fff 30%);
     }
-  }
-
-  .icon {
-    font-family: var(--font-icon);
   }
 
   .main-header {

@@ -6,6 +6,7 @@ interface Props {
   title: string;
 }
 import Badge from "../components/Badge.astro";
+import Icon from "../components/Icon.astro";
 import LinkButton from "../components/LinkButton.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -14,9 +15,7 @@ const { category, date, timeToRead, title } = Astro.props;
 
 <Layout maxWidth={1000}>
   <div class="header">
-    <LinkButton href="/writing"
-      ><span class="icon">arrow_back</span>All Posts</LinkButton
-    >
+    <LinkButton href="/writing"><Icon name="arrow_back" />All Posts</LinkButton>
     <div class="metadata">
       <div>
         <h1>{title}</h1>
@@ -70,10 +69,6 @@ const { category, date, timeToRead, title } = Astro.props;
     hr {
       margin-bottom: 2rem;
     }
-  }
-
-  .icon {
-    font-family: var(--font-icon);
   }
 
   .header {

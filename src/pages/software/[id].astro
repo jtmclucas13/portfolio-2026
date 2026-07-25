@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import LinkButton from "../../components/LinkButton.astro";
 import Flex from "../../components/Flex.astro";
+import Icon from "../../components/Icon.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("software");
@@ -32,16 +33,14 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
       </Flex>
     </Flex>
     <LinkButton href="/software" theme="secondary"
-      ><span class="icon">arrow_back</span>All Projects</LinkButton
+      ><Icon name="arrow_back" />All Projects</LinkButton
     >
   </Flex>
   <div class="content">
     <div>
       <p>{entry.data.description}</p>
       <div class="button-group">
-        <LinkButton href="/contact"
-          ><span class="icon">send</span>Contact Me</LinkButton
-        >
+        <LinkButton href="/contact"><Icon name="send" />Contact Me</LinkButton>
       </div>
     </div>
     <aside>
@@ -111,10 +110,6 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
       }
     }
 
-    .icon {
-      font-family: var(--font-icon);
-    }
-
     .date {
       font-style: italic;
       margin-bottom: 0;
@@ -132,10 +127,6 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
       &:hover {
         color: var(--color-primary);
         text-decoration: none;
-      }
-
-      .icon {
-        padding-right: 4px;
       }
     }
   </style>
