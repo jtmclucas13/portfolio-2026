@@ -1,0 +1,15 @@
+---
+import type { Props as LinkProps } from "../../components/Link.astro";
+import Link from "../../components/Link.astro";
+
+interface Props extends LinkProps {}
+
+const props = Astro.props;
+---
+
+<Link
+  {...props}
+  target={props.href.startsWith("https://www.joshuamclucas.com")
+    ? ""
+    : "_blank"}><slot /></Link
+>

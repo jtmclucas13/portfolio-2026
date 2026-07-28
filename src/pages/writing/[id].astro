@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Post from "../../layouts/Post.astro";
 import LinkButton from "../../components/LinkButton.astro";
 import Icon from "../../components/Icon.astro";
+import MdxLink from "../../components/mdx/MdxLink.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writing");
@@ -36,7 +37,11 @@ const { Content, remarkPluginFrontmatter } = await render(post);
   timeToRead={remarkPluginFrontmatter.minutesRead}
   title={post.data.title}
 >
-  <Content />
+  <Content
+    components={{
+      a: MdxLink,
+    }}
+  />
   <div class="button-group">
     {
       prevSlug && (

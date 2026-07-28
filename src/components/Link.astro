@@ -1,0 +1,27 @@
+---
+export interface Props {
+  href: string;
+  target?: HTMLAnchorElement["target"];
+}
+
+const { href, target, ...rest } = Astro.props;
+---
+
+<a
+  {...rest}
+  class="link"
+  href={href}
+  rel={target === "_blank" ? "noopener noreferrer" : undefined}
+  target={target}><slot /></a
+>
+
+<style>
+  .link {
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+  }
+</style>
