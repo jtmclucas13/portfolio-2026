@@ -1,33 +1,103 @@
 ---
+import { undefined } from "astro:schema";
+
+type ResponsiveArray<T> = Array<T | null> | T;
+
+type Align = "start" | "center" | "end" | "stretch";
+type ResponsiveAlign = ResponsiveArray<Align>;
+
+type Direction = "row" | "column" | "row-reverse" | "column-reverse";
+type ResponsiveDirection = ResponsiveArray<Direction>;
+
+type Justify = "start" | "center" | "end" | "between" | "around";
+type ResponsiveJustify = ResponsiveArray<Justify>;
+
+type Grow = boolean;
+type ResponsiveGrow = ResponsiveArray<Grow>;
+
 interface Props {
-  align?: "start" | "center" | "end" | "stretch";
+  align?: ResponsiveAlign;
+  alignSelf?: Align;
   class?: string;
-  direction?: "row" | "column" | "row-reverse";
+  direction?: ResponsiveDirection;
   gap?: number;
-  grow?: boolean;
-  justify?: "start" | "center" | "end" | "between" | "around";
+  grow?: ResponsiveGrow;
+  justify?: ResponsiveJustify;
+  maxWidth?: number;
 }
 const {
   align = "start",
+  alignSelf,
   class: className = "",
   direction = "row",
   gap = 0,
   grow,
   justify = "start",
+  maxWidth,
   ...rest
 } = Astro.props;
+
+const BREAKPOINT_MODIFIERS = ["small", "medium"];
+
+function getResponsiveClasses<T>(
+  classProp: ResponsiveArray<T>,
+  prefix?: string,
+) {
+  if (Array.isArray(classProp)) {
+    let responsiveClasses: string[] = [];
+
+    for (let i = 0; i < classProp.length; i++) {
+      const breakpointProp = classProp[i];
+      if (breakpointProp === null) {
+        continue;
+      }
+
+      const modifier = BREAKPOINT_MODIFIERS[i];
+
+      if (!modifier) {
+        throw new Error("Improper breakpoint found");
+      }
+
+      const propClass = prefix ? `${prefix}-${breakpointProp}` : breakpointProp;
+      responsiveClasses.push(`${propClass}-${modifier}`);
+    }
+
+    return responsiveClasses;
+  }
+
+  const prefixedClass = prefix ? `${prefix}-${classProp}` : classProp;
+
+  return [prefixedClass];
+}
+
+function getGrowClass(growProp?: ResponsiveGrow) {
+  if (!growProp) {
+    return [];
+  }
+
+  if (typeof growProp === "boolean") {
+    return getResponsiveClasses("grow");
+  }
+
+  const growArray = growProp.map((prop) => (prop ? "grow" : null));
+  return getResponsiveClasses(growArray);
+}
 ---
 
 <div
   class:list={[
     "flex",
     className,
-    direction,
-    { grow: grow },
-    `align-${align}`,
-    `justify-${justify}`,
+    ...getResponsiveClasses(direction),
+    ...getGrowClass(grow),
+    ...getResponsiveClasses(align, "align"),
+    ...getResponsiveClasses(justify, "justify"),
   ]}
-  style={{ gap: `${gap}rem` }}
+  style={{
+    alignSelf,
+    gap: gap ? `${gap}rem` : undefined,
+    maxWidth: maxWidth ? `${maxWidth}px` : undefined,
+  }}
   {...rest}
 >
   <slot />
@@ -52,6 +122,10 @@ const {
 
   .column {
     flex-direction: column;
+  }
+
+  .column-reverse {
+    flex-direction: column-reverse;
   }
 
   .align-start {
@@ -88,5 +162,81 @@ const {
 
   .justify-around {
     justify-content: space-around;
+  }
+
+  @media screen and (max-width: 850px) {
+    .row-small {
+      flex-direction: row;
+    }
+
+    .row-reverse-small {
+      flex-direction: row-reverse;
+    }
+
+    .column-small {
+      flex-direction: column;
+    }
+
+    .column-reverse-small {
+      flex-direction: column-reverse;
+    }
+
+    .justify-start-small {
+      justify-content: flex-start;
+    }
+
+    .justify-center-small {
+      justify-content: center;
+    }
+
+    .justify-end-small {
+      justify-content: flex-end;
+    }
+
+    .justify-between-small {
+      justify-content: space-between;
+    }
+
+    .justify-around-small {
+      justify-content: space-around;
+    }
+  }
+
+  @media screen and (max-width: 1200px) and (min-width: 851px) {
+    .row-medium {
+      flex-direction: row;
+    }
+
+    .row-reverse-medium {
+      flex-direction: row-reverse;
+    }
+
+    .column-medium {
+      flex-direction: column;
+    }
+
+    .column-reverse-medium {
+      flex-direction: column-reverse;
+    }
+
+    .justify-start-medium {
+      justify-content: flex-start;
+    }
+
+    .justify-center-medium {
+      justify-content: center;
+    }
+
+    .justify-end-medium {
+      justify-content: flex-end;
+    }
+
+    .justify-around-medium {
+      justify-content: space-around;
+    }
+
+    .justify-between-medium {
+      justify-content: space-between;
+    }
   }
 </style>

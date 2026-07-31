@@ -98,6 +98,15 @@ const buildGradient = (index: number) => {
 
   rightButton?.addEventListener("click", scrollRight);
   leftButton?.addEventListener("click", scrollLeft);
+
+  document.addEventListener("readystatechange", () => {
+    const allTimelineEntries = document.querySelectorAll(".timeline-entry");
+    const firstTimelineEntry = allTimelineEntries.item(0);
+
+    if (firstTimelineEntry) {
+      firstTimelineEntry.scrollIntoView({ inline: "center" });
+    }
+  });
 </script>
 
 <section class="timeline">
@@ -157,10 +166,17 @@ const buildGradient = (index: number) => {
 
   .timeline-title {
     position: absolute;
-    left: 50%;
+    text-align: center;
     top: 2rem;
-    transform: translateX(-50%);
+    width: 100%;
     z-index: 1;
+
+    @media screen and (min-width: 850px) {
+      left: 50%;
+      text-align: left;
+      transform: translateX(-50%);
+      width: auto;
+    }
   }
 
   .timeline-scroll-container {
@@ -193,8 +209,12 @@ const buildGradient = (index: number) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
+    width: 350px;
     z-index: 1;
+
+    @media screen and (min-width: 850px) {
+      width: 400px;
+    }
   }
 
   .timeline-line {
@@ -267,13 +287,23 @@ const buildGradient = (index: number) => {
   .scroll-left-button {
     position: absolute;
     left: 1rem;
-    bottom: 1rem;
+    top: 31px;
+
+    @media screen and (min-width: 850px) {
+      bottom: 1rem;
+      top: unset;
+    }
   }
 
   .scroll-right-button {
     position: absolute;
     right: 1rem;
-    bottom: 1rem;
+    top: 31px;
+
+    @media screen and (min-width: 850px) {
+      bottom: 1rem;
+      top: unset;
+    }
   }
 
   button {
@@ -283,8 +313,12 @@ const buildGradient = (index: number) => {
     color: var(--color-black);
     cursor: pointer;
     font-family: var(--font-icon);
-    font-size: 32px;
+    font-size: 24px;
     z-index: 1;
+
+    @media screen and (min-width: 850px) {
+      font-size: 32px;
+    }
 
     &:hover {
       background-color: color-mix(in srgb, var(--color-white), #000 15%);

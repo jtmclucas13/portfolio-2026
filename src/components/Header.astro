@@ -132,19 +132,37 @@ const { withBorder } = Astro.props;
       color: var(--color-secondary);
       display: flex;
       justify-content: space-between;
-      padding: 1rem 2rem;
+      padding: 1rem;
+
+      @media screen and (min-width: 850px) {
+        padding: 1rem 2rem;
+      }
     }
   }
 
   h1 {
     margin-bottom: 0.5rem;
+
+    @media screen and (max-width: 850px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  h2 {
+    @media screen and (max-width: 850px) {
+      font-size: 1.3rem;
+    }
   }
 
   .hamburger {
     cursor: pointer;
     font-family: var(--font-icon);
-    font-size: 50px;
+    font-size: 35px;
     transition: color 0.2s ease-in-out;
+
+    @media screen and (min-width: 850px) {
+      font-size: 50px;
+    }
 
     &:hover {
       color: color-mix(in srgb, var(--color-secondary), #fff 30%);
@@ -154,11 +172,15 @@ const { withBorder } = Astro.props;
   .main-header {
     svg {
       width: 72px;
+
+      @media screen and (max-width: 850px) {
+        display: none;
+      }
     }
   }
 
   .navigation {
-    --header-height: 107px;
+    --header-height: 94px;
     background-clip: padding-box;
     background-color: var(--color-black);
     border-image-outset: 34px;
@@ -172,14 +194,22 @@ const { withBorder } = Astro.props;
     width: 300px;
     z-index: 999;
 
+    @media screen and (min-width: 850px) {
+      --header-height: 107px;
+    }
+
     ul {
       padding: 2rem;
 
       li {
         align-items: center;
         display: flex;
-        font-size: 2rem;
+        font-size: 1.5rem;
         gap: 8px;
+
+        @media screen and (min-width: 850px) {
+          font-size: 2rem;
+        }
       }
 
       li:not(:last-child) {

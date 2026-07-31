@@ -10,12 +10,21 @@ import BoxItem from "../components/BoxItem.astro";
 ---
 
 <Layout withGlobalPadding={false}>
-  <Flex grow>
+  <Flex
+    alignSelf="center"
+    direction={["column-reverse", "row"]}
+    grow={[false, true]}
+    justify={["start", "center"]}
+    maxWidth={1200}
+  >
     <Picture
       pictureAttributes={{ style: "flex: 1 0 50%; min-width: 0;" }}
       src={headshotImage}
       alt="Headshot of Joshua McLucas"
+      layout="constrained"
       priority
+      height={850}
+      width={850}
     />
     <Flex direction="column" class="intro">
       <p>
@@ -95,30 +104,60 @@ import BoxItem from "../components/BoxItem.astro";
     border-image: url("../assets/lace-border.png") 34 round;
     color: var(--color-secondary);
     font-family: var(--font-cursive);
-    font-size: 3.5rem;
+    font-size: 2rem;
     margin: 1rem;
     flex: 1 1 50%;
     text-align: center;
+    width: calc(100% - 2rem);
+
+    @media screen and (max-width: 850px) {
+      line-height: 2.5rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+      align-self: center;
+      font-size: 3.1rem;
+      max-width: 1200px;
+    }
 
     div {
       background-color: var(--color-black);
       height: 100%;
-      padding: 3rem;
+      padding: 1rem;
       width: 100%;
+
+      @media screen and (min-width: 850px) {
+        padding: 2rem;
+      }
+
+      @media screen and (min-width: 1200px) {
+        padding: 3rem;
+      }
     }
   }
 
   .values {
-    padding: 2rem 4rem;
+    align-self: center;
+    max-width: 1200px;
+    padding: 2rem;
+
+    @media screen and (min-width: 850px) {
+      padding: 2rem 4rem;
+    }
 
     h2 {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   .values-list {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    flex-direction: column;
     gap: 1.25rem;
+
+    @media screen and (min-width: 850px) {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
   }
 </style>

@@ -73,9 +73,13 @@ const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
     color: var(--color-secondary);
     display: flex;
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 0.75rem;
     justify-content: space-between;
     padding: 2rem;
+
+    @media screen and (min-width: 850px) {
+      font-size: 1.25rem;
+    }
   }
 
   .copyright {
@@ -91,6 +95,10 @@ const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
   .hi-mark {
     fill: var(--color-secondary);
     height: auto;
-    width: 1.25rem;
+    width: 1rem;
+
+    @media screen and (min-width: 850px) {
+      width: 1.25rem;
+    }
   }
 </style>

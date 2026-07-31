@@ -68,10 +68,14 @@ const { title = "Joshua McLucas - Career Chameleon" } = Astro.props;
 
   p {
     font-family: var(--font-body);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-optical-sizing: auto;
     margin: 0;
     margin-bottom: 1rem;
+
+    @media screen and (min-width: 850px) {
+      font-size: 1.25rem;
+    }
 
     &:last-child {
       margin-bottom: 0;

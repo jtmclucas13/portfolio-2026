@@ -42,10 +42,18 @@ const { gap = 1, size = "medium", theme } = Astro.props;
     fill: var(--color-black);
     cursor: pointer;
     transition: fill 0.2s ease-in-out;
-    width: 100px;
+    width: 75px;
+
+    @media screen and (min-width: 850px) {
+      width: 100px;
+    }
 
     &.small {
-      width: 20px;
+      width: 15px;
+
+      @media screen and (min-width: 850px) {
+        width: 20px;
+      }
     }
 
     &.inverted {
