@@ -97,7 +97,7 @@ import Icon from "../components/Icon.astro";
 
 <Layout withHeaderBorder>
   <h2>Contact Me</h2>
-  <Flex align="end" gap={2} grow>
+  <Flex align={["center", "end"]} direction={["column", "row"]} gap={2} grow>
     <div class="success">
       <BoxItem
         icon="check_circle"
@@ -147,7 +147,7 @@ import Icon from "../components/Icon.astro";
       </div>
       <Button type="submit"><Icon name="send" />Send Email</Button>
     </form>
-    <Flex align="center" direction="column" gap={5} grow justify="center">
+    <Flex align="center" direction="column" gap={[2, 5]} grow justify="center">
       <Socials gap={3} />
       <LinkButton
         href="McLucas - Professional Resume.pdf"

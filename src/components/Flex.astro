@@ -111,7 +111,7 @@ function getResponsiveGap(gap?: ResponsiveGap) {
   style={{
     alignSelf,
     gap: getResponsiveGap(gap),
-    maxWidth: maxWidth ? `{}px` : undefined,
+    maxWidth: maxWidth ? `${maxWidth}px` : undefined,
   }}
   {...rest}
 >
