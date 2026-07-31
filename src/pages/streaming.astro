@@ -8,6 +8,21 @@ import Flex from "../components/Flex.astro";
 import Link from "../components/Link.astro";
 ---
 
+<script>
+  document.addEventListener("readystatechange", () => {
+    const iframe = document.querySelector("iframe");
+    const documentWidth = document.body.clientWidth;
+
+    if (iframe) {
+      if (documentWidth < 850) {
+        iframe?.setAttribute("width", "300");
+      }
+
+      iframe.style.display = "block";
+    }
+  });
+</script>
+
 <Layout maxWidth={1200} withHeaderBorder>
   <div class="header">
     <h2>
@@ -68,12 +83,24 @@ import Link from "../components/Link.astro";
   }
 
   .content {
+    align-items: center;
     display: flex;
+    flex-direction: column;
     gap: 4rem;
+
+    @media screen and (min-width: 850px) {
+      align-items: unset;
+      flex-direction: row;
+    }
 
     > div,
     > iframe {
       flex: 1;
+    }
+
+    > iframe {
+      /* control this with JavaScript to avoid FOUC */
+      display: none;
     }
   }
 
@@ -87,7 +114,11 @@ import Link from "../components/Link.astro";
     fill: var(--color-black);
     cursor: pointer;
     transition: fill 0.2s ease-in-out;
-    width: 75px;
+    width: 50px;
+
+    @media screen and (min-width: 850px) {
+      width: 75px;
+    }
 
     &:hover {
       fill: color-mix(in srgb, var(--color-black), #fff 20%);

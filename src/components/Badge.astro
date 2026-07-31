@@ -33,8 +33,13 @@ const {
     width: max-content;
 
     &.medium {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+
+      @media screen and (min-width: 850px) {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
     }
 
     &.small {
