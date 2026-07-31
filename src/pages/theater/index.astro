@@ -89,7 +89,10 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     {
       allTheaterEntries.map((entry, index) => (
         <div data-type={entry.data.role === null ? "directing" : "acting"}>
-          <Flex direction={index % 2 === 0 ? "row" : "row-reverse"} gap={2}>
+          <Flex
+            direction={["column", index % 2 === 0 ? "row" : "row-reverse"]}
+            gap={[1, 2]}
+          >
             {entry.data.photos.length > 0 && (
               <div class="image">
                 <ImageWithCaption
@@ -109,7 +112,7 @@ const allTheaterEntries = (await getCollection("theater")).sort(
                 )}
               </div>
             )}
-            <Flex class="entry-content" direction="column" gap={2}>
+            <Flex class="entry-content" direction="column" gap={[1, 2]}>
               <Flex direction="column" gap={0.25}>
                 <h4>{entry.data.title}</h4>
                 <h5>By {entry.data.by}</h5>
@@ -162,11 +165,16 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     > div {
       background-color: var(--color-black);
       display: flex;
+      flex-direction: column;
       gap: 2rem;
       height: 100%;
       justify-content: center;
       padding: 1rem;
       width: 100%;
+
+      @media screen and (min-width: 850px) {
+        flex-direction: row;
+      }
     }
   }
 
@@ -285,13 +293,20 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     background-color: var(--color-secondary);
     color: var(--color-black);
     font-family: var(--font-cursive);
-    font-size: 2rem;
-    padding: 0.75rem 0;
+    font-size: 1.5rem;
+    padding: 0.5rem 3.5rem;
     position: absolute;
-    right: -50%;
+    right: 60px;
     text-align: center;
-    top: 75px;
-    transform: translateX(-50%) rotate(45deg);
-    width: 425px;
+    top: 40px;
+    transform: translateX(50%) rotate(45deg);
+    width: auto;
+
+    @media screen and (min-width: 850px) {
+      font-size: 2rem;
+      padding: 0.5rem 5rem;
+      right: 70px;
+      top: 52px;
+    }
   }
 </style>
