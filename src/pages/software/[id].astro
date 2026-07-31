@@ -23,7 +23,12 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
 ---
 
 <Layout maxWidth={1200} withHeaderBorder>
-  <Flex align="center" justify="between">
+  <Flex
+    align="center"
+    direction={["column", "row"]}
+    gap={[1.5, 0]}
+    justify="between"
+  >
     <Flex align="center" gap={1.5}>
       <Image alt={entry.data.title} src={entry.data.logo} width="100" />
       <Flex direction="column">
@@ -64,8 +69,14 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
   <style>
     .content {
       display: flex;
-      gap: 4rem;
+      flex-direction: column-reverse;
+      gap: 2rem;
       margin-top: 1.5rem;
+
+      @media screen and (min-width: 850px) {
+        flex-direction: row;
+        gap: 4rem;
+      }
 
       > div {
         flex: 2;

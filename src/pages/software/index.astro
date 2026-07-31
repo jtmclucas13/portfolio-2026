@@ -42,7 +42,16 @@ const allSoftwareEntries = (await getCollection("software")).sort(
 
   .software-items {
     display: grid;
-    grid-template-columns: calc(50% - 1.5rem) calc(50% - 1.5rem);
-    gap: 2rem 3rem;
+    gap: 1rem;
+    grid-template-columns: 100%;
+
+    @media screen and (min-width: 850px) {
+      grid-template-columns: calc(50% - 1.5rem) calc(50% - 1.5rem);
+      gap: 2rem 3rem;
+    }
+
+    .item {
+      align-items: center;
+    }
   }
 </style>

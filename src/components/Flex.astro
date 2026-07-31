@@ -15,12 +15,15 @@ type ResponsiveJustify = ResponsiveArray<Justify>;
 type Grow = boolean;
 type ResponsiveGrow = ResponsiveArray<Grow>;
 
+type Gap = number;
+type ResponsiveGap = ResponsiveArray<Gap>;
+
 interface Props {
   align?: ResponsiveAlign;
   alignSelf?: Align;
   class?: string;
   direction?: ResponsiveDirection;
-  gap?: number;
+  gap?: ResponsiveGap;
   grow?: ResponsiveGrow;
   justify?: ResponsiveJustify;
   maxWidth?: number;
@@ -82,6 +85,18 @@ function getGrowClass(growProp?: ResponsiveGrow) {
   const growArray = growProp.map((prop) => (prop ? "grow" : null));
   return getResponsiveClasses(growArray);
 }
+
+function getResponsiveGap(gap?: ResponsiveGap) {
+  if (!gap) {
+    return undefined;
+  }
+
+  if (typeof gap === "number") {
+    return `${gap}rem;`;
+  }
+
+  return `${gap[0]}rem; ${gap[1] ? `@media screen and (min-width: 850px) { ${gap[1]}rem; }` : ""} ${gap[2] ? `@media screen and (min-width: 1200px) { ${gap[2]}rem; }` : ""}`;
+}
 ---
 
 <div
@@ -95,8 +110,8 @@ function getGrowClass(growProp?: ResponsiveGrow) {
   ]}
   style={{
     alignSelf,
-    gap: gap ? `${gap}rem` : undefined,
-    maxWidth: maxWidth ? `${maxWidth}px` : undefined,
+    gap: getResponsiveGap(gap),
+    maxWidth: maxWidth ? `{}px` : undefined,
   }}
   {...rest}
 >
