@@ -61,8 +61,15 @@ const allPosts = (await getCollection("writing")).sort(
     .metadata {
       align-items: flex-start;
       display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
       justify-content: space-between;
       margin-bottom: 0.5rem;
+
+      @media screen and (min-width: 850px) {
+        flex-direction: row;
+        gap: 0;
+      }
     }
 
     hr {

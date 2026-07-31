@@ -73,7 +73,14 @@ const { category, date, timeToRead, title } = Astro.props;
   .metadata {
     align-items: flex-start;
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     justify-content: space-between;
+
+    @media screen and (min-width: 850px) {
+      flex-direction: row;
+      gap: 0;
+    }
   }
 
   .time-to-read {
