@@ -119,20 +119,24 @@ const allTheaterEntries = (await getCollection("theater")).sort(
                 <h5>Directed by {entry.data.directedBy}</h5>
                 <h5>{entry.data.theater}</h5>
               </Flex>
-              {entry.data.blurbs.map((blurb) => (
-                <blockquote cite={blurb.link}>
-                  <a
-                    href={blurb.link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {blurb.quote}
-                  </a>
-                  <footer>
-                    <cite>{blurb.author}</cite>
-                  </footer>
-                </blockquote>
-              ))}
+              {entry.data.blurbs.map((blurb) => {
+                const WrapperTag = blurb.link ? "a" : "span";
+
+                return (
+                  <blockquote cite={blurb.link}>
+                    <WrapperTag
+                      href={blurb.link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {blurb.quote}
+                    </WrapperTag>
+                    <footer>
+                      <cite>{blurb.author}</cite>
+                    </footer>
+                  </blockquote>
+                );
+              })}
             </Flex>
           </Flex>
           <hr />
