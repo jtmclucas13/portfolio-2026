@@ -101,7 +101,12 @@ const dateRange = isSameYear ? startYear : `${startYear} - ${endYear}`;
       flex: 1 1 50%;
       text-align: center;
 
+      :global(.dark) & {
+        border-image: url("../../assets/lace-border-ivory.png") 34 round;
+      }
+
       h3 {
+        color: var(--color-secondary);
         margin-bottom: 1rem;
       }
 

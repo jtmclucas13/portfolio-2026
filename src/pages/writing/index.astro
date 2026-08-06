@@ -77,6 +77,10 @@ const allPosts = (await getCollection("writing")).sort(
       border: none;
       height: 1px;
       margin: 1.5rem 0;
+
+      :global(.dark) & {
+        background-color: var(--color-white);
+      }
     }
   }
 

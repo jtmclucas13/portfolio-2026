@@ -24,6 +24,10 @@ const { type } = Astro.props;
     font-size: 1.25rem;
     border-radius: var(--radius-base);
     transition: background-color 0.2s ease-in-out;
+
+    :global(.dark) & {
+      color: var(--color-black);
+    }
   }
 
   button:hover {

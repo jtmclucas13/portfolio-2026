@@ -39,6 +39,10 @@ const Element = href ? "a" : "div";
     gap: 16px;
     padding: 1.25rem;
 
+    :global(.dark) & {
+      color: var(--color-white);
+    }
+
     &.link {
       cursor: pointer;
       text-align: left;
@@ -46,6 +50,7 @@ const Element = href ? "a" : "div";
 
       &:hover {
         background-color: var(--color-secondary);
+        color: var(--color-black);
       }
     }
   }
@@ -59,7 +64,6 @@ const Element = href ? "a" : "div";
   .title {
     align-items: center;
     display: flex;
-    color: var(--color-black);
     font-family: var(--font-display);
     font-size: 1rem;
     gap: 8px;
@@ -82,8 +86,16 @@ const Element = href ? "a" : "div";
     background-color: var(--color-danger);
     color: var(--color-white);
 
+    :global(.dark) & {
+      color: var(--color-black);
+    }
+
     .title {
       color: var(--color-white);
+
+      :global(.dark) & {
+        color: var(--color-black);
+      }
     }
   }
 

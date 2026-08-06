@@ -32,6 +32,10 @@ const { download, href, theme = "primary" } = Astro.props;
       background-color: var(--color-primary);
       border: 1px solid var(--color-black);
       color: var(--color-white);
+
+      :global(.dark) & {
+        color: var(--color-black);
+      }
     }
 
     &.secondary {
@@ -48,6 +52,10 @@ const { download, href, theme = "primary" } = Astro.props;
 
     &.secondary {
       background-color: color-mix(in srgb, var(--color-primary), #fff 85%);
+
+      :global(.dark) & {
+        background-color: color-mix(in srgb, var(--color-primary), #fff 65%);
+      }
     }
   }
 
@@ -58,6 +66,10 @@ const { download, href, theme = "primary" } = Astro.props;
 
     &.secondary {
       background-color: color-mix(in srgb, var(--color-primary), #fff 70%);
+
+      :global(.dark) & {
+        background-color: color-mix(in srgb, var(--color-primary), #fff 55%);
+      }
     }
   }
 </style>

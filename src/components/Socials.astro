@@ -44,6 +44,10 @@ const { gap = 1, size = "medium", theme } = Astro.props;
     transition: fill 0.2s ease-in-out;
     width: 75px;
 
+    :global(.dark) & {
+      fill: var(--color-primary);
+    }
+
     @media screen and (min-width: 850px) {
       width: 100px;
     }
@@ -66,6 +70,10 @@ const { gap = 1, size = "medium", theme } = Astro.props;
 
     &:hover {
       fill: color-mix(in srgb, var(--color-black), #fff 20%);
+
+      :global(.dark) & {
+        fill: color-mix(in srgb, var(--color-primary), #fff 20%);
+      }
     }
   }
 </style>

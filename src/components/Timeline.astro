@@ -69,8 +69,11 @@ const data = [
 ];
 
 const buildGradient = (index: number) => {
-  const colors = ["--color-secondary", "--color-white", "--color-tertiary"];
-
+  const colors = [
+    "--gradient-color-one",
+    "--gradient-color-two",
+    "--gradient-color-three",
+  ];
   const colorOneIndex = Math.floor(index / colors.length);
   const colorOne = colors[colorOneIndex];
 
@@ -157,11 +160,20 @@ const buildGradient = (index: number) => {
   .timeline {
     --axis-height: 4px;
     --marker-height: 47px;
+    --gradient-color-one: var(--color-secondary);
+    --gradient-color-two: var(--color-white);
+    --gradient-color-three: var(--color-tertiary);
 
     border-bottom: 1px solid var(--color-black);
     border-top: 1px solid var(--color-black);
     position: relative;
     width: 100%;
+
+    :global(.dark) & {
+      --gradient-color-one: var(--color-tertiary);
+      --gradient-color-two: var(--color-black);
+      --gradient-color-three: var(--color-tertiary);
+    }
   }
 
   .timeline-title {
@@ -199,6 +211,15 @@ const buildGradient = (index: number) => {
       var(--color-white),
       var(--color-secondary)
     );
+
+    :global(.dark) & {
+      background: linear-gradient(
+        to right,
+        var(--color-tertiary),
+        var(--color-secondary),
+        var(--color-tertiary)
+      );
+    }
   }
 
   .timeline-entry {
@@ -221,6 +242,10 @@ const buildGradient = (index: number) => {
     background-color: var(--color-black);
     height: var(--axis-height);
     width: calc(280px * 2);
+
+    :global(.dark) & {
+      background-color: var(--color-white);
+    }
   }
 
   .timeline-marker {
@@ -237,6 +262,11 @@ const buildGradient = (index: number) => {
     z-index: 2;
     flex-shrink: 0;
     top: calc((var(--marker-height) / 2) * -1);
+
+    :global(.dark) & {
+      color: var(--color-white);
+      border-color: var(--color-white);
+    }
   }
 
   .timeline-content {
@@ -252,6 +282,11 @@ const buildGradient = (index: number) => {
     transition:
       scale 0.2s ease,
       box-shadow 0.2s ease;
+
+    :global(.dark) & {
+      border-color: var(--color-white);
+      box-shadow: 6px 6px 0 var(--color-white);
+    }
 
     &.above {
       bottom: calc(var(--marker-height) * 2);
@@ -273,6 +308,10 @@ const buildGradient = (index: number) => {
     font-size: 1rem;
     margin: 0 0 0.5rem 0;
     color: var(--color-black);
+
+    :global(.dark) & {
+      color: var(--color-white);
+    }
   }
 
   .timeline-description {
@@ -282,6 +321,10 @@ const buildGradient = (index: number) => {
     color: var(--color-black);
     opacity: 0.85;
     margin: 0;
+
+    :global(.dark) & {
+      color: var(--color-white);
+    }
   }
 
   .scroll-left-button {

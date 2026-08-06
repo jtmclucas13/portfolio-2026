@@ -9,6 +9,8 @@ import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Socials from "../components/Socials.astro";
 import HiMark from "../assets/hi-mark.svg";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Flex from "../components/Flex.astro";
 
 const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
 ---
@@ -39,7 +41,10 @@ const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
           target="_blank"><HiMark class="hi-mark" /></a
         > Joshua McLucas, {new Date().getFullYear()}</span
       >
-      <Socials size="small" theme="inverted" />
+      <Flex align="center" gap={1}>
+        <Socials size="small" theme="inverted" />
+        <ThemeToggle />
+      </Flex>
     </footer>
   </body>
 </html>

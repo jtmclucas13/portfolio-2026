@@ -162,6 +162,10 @@ const allTheaterEntries = (await getCollection("theater")).sort(
     flex: 1 1 50%;
     text-align: center;
 
+    :global(.dark) & {
+      border-image: url("../../assets/lace-border-ivory.png") 34 round;
+    }
+
     > div {
       background-color: var(--color-black);
       display: flex;
@@ -247,9 +251,14 @@ const allTheaterEntries = (await getCollection("theater")).sort(
 
   blockquote {
     border-left: 3px solid var(--color-primary);
+    color: var(--color-black);
     padding-left: 1.5rem;
     font-size: 1.1rem;
     margin: 0;
+
+    :global(.dark) & {
+      color: var(--color-white);
+    }
 
     a {
       cursor: pointer;

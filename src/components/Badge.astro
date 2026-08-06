@@ -32,6 +32,10 @@ const {
     text-transform: uppercase;
     width: max-content;
 
+    :global(.dark) & {
+      color: var(--color-black);
+    }
+
     &.medium {
       font-size: 0.875rem;
       padding: 0.25rem 0.75rem;

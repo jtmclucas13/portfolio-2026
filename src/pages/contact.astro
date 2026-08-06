@@ -172,8 +172,13 @@ import Icon from "../components/Icon.astro";
   }
 
   label {
+    color: var(--color-black);
     display: flex;
     flex-direction: column;
+
+    :global(.dark) & {
+      color: var(--color-white);
+    }
 
     input,
     textarea {

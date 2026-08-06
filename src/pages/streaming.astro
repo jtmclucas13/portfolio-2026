@@ -116,6 +116,10 @@ import Link from "../components/Link.astro";
     transition: fill 0.2s ease-in-out;
     width: 50px;
 
+    :global(.dark) & {
+      fill: var(--color-primary);
+    }
+
     @media screen and (min-width: 850px) {
       width: 75px;
     }

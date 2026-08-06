@@ -87,7 +87,6 @@ import BoxItem from "../components/BoxItem.astro";
 
   .intro {
     background-color: var(--color-tertiary);
-    color: var(--color-black);
     display: flex;
     flex: 1 0 50%;
     height: 100%;
@@ -109,6 +108,10 @@ import BoxItem from "../components/BoxItem.astro";
     flex: 1 1 50%;
     text-align: center;
     width: calc(100% - 2rem);
+
+    :global(.dark) & {
+      border-image: url("../assets/lace-border-ivory.png") 34 round;
+    }
 
     @media screen and (max-width: 850px) {
       line-height: 2.5rem;
