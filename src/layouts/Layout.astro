@@ -11,6 +11,7 @@ import Socials from "../components/Socials.astro";
 import HiMark from "../assets/hi-mark.svg";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import Flex from "../components/Flex.astro";
+import Analytics from "../components/Analytics.astro";
 
 const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
 ---
@@ -20,6 +21,7 @@ const { maxWidth, withGlobalPadding = true, withHeaderBorder } = Astro.props;
   <head>
     <Head />
   </head>
+  <Analytics />
   <body>
     <div>
       <Header withBorder={withHeaderBorder} />
