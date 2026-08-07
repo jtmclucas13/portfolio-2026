@@ -18,6 +18,6 @@ export const server = {
         .string("Subject is required.")
         .max(1000, { error: "Subject must be shorter than 1000 characters." }),
     }),
-    handler: async (input) => input,
+    handler: async () => ({ success: true }),
   }),
 };
