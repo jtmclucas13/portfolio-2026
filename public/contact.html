@@ -1,0 +1,31 @@
+<form data-netlify="true" data-netlify-honeypot="bot-field" name="contact-me">
+  <div>
+    <label>Name<input maxlength="1000" name="name" /></label>
+    <div class="field-error-element" data-field="name"></div>
+  </div>
+  <div>
+    <label>Email<input maxlength="1000" name="email" type="email" /></label>
+    <div class="field-error-element" data-field="email"></div>
+  </div>
+  <div>
+    <label>Subject<input maxlength="1000" name="subject" /></label>
+    <div class="field-error-element" data-field="subject"></div>
+  </div>
+  <div>
+    <label
+      >Message<textarea maxlength="20000" name="message" rows="5"></textarea>
+    </label>
+    <div class="field-error-element" data-field="message"></div>
+  </div>
+
+  <input name="bot-field" />
+  <div class="error">
+    <BoxItem
+      icon="error"
+      title="Uh-oh!"
+      subtitle="There was an error sending your message. Please try again, or contact me via social media."
+      theme="danger"
+    />
+  </div>
+  <button type="submit">Send Email</button>
+</form>
