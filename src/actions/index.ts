@@ -18,6 +18,16 @@ export const server = {
         .string("Subject is required.")
         .max(1000, { error: "Subject must be shorter than 1000 characters." }),
     }),
-    handler: async () => ({ success: true }),
+    handler: async (input, context) => {
+      const baseUrl = new URL(context.request.url).origin;
+
+      await fetch(`${baseUrl}/contact-me`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(input).toString(),
+      });
+
+      return { success: true };
+    },
   }),
 };
