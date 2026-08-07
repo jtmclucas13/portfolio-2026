@@ -1,6 +1,10 @@
 ---
 import { Font } from "astro:assets";
-const { title = "Joshua McLucas - Career Chameleon" } = Astro.props;
+const {
+  description = "The web home of Joshua McLucas, the Career Chameleon.",
+  title = "Joshua McLucas - Career Chameleon",
+} = Astro.props;
+const { href } = Astro.url;
 ---
 
 <meta name="generator" content={Astro.generator} />
@@ -8,10 +12,15 @@ const { title = "Joshua McLucas - Career Chameleon" } = Astro.props;
 <meta name="viewport" content="width=device-width" />
 
 <title>{title}</title>
-<meta
-  name="description"
-  content="The web home of Philadelphia-based multi-hyphenate, Joshua McLucas."
-/>
+<meta name="description" content={description} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={href} />
+<meta property="og:type" content="website" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
 
 <link rel="icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" href="/favicon.png" />

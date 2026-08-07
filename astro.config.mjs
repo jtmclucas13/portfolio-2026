@@ -5,6 +5,8 @@ import mdx from "@astrojs/mdx";
 
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   fonts: [
@@ -56,7 +58,7 @@ export default defineConfig({
   ],
 
   site: "https://www.joshuamclucas.com",
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     processor: unified({
       remarkPlugins: [remarkReadingTime],
