@@ -21,7 +21,7 @@ export const server = {
     handler: async (input, context) => {
       const baseUrl = new URL(context.request.url).origin;
 
-      await fetch(`${baseUrl}/contact-me`, {
+      await fetch(baseUrl, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(input).toString(),
