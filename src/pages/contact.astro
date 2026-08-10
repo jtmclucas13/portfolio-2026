@@ -1,5 +1,4 @@
 ---
-export const prerender = false;
 import BoxItem from "../components/BoxItem.astro";
 import Button from "../components/Button.astro";
 import Flex from "../components/Flex.astro";
@@ -10,7 +9,26 @@ import Icon from "../components/Icon.astro";
 ---
 
 <script>
-  import { actions, isInputError } from "astro:actions";
+  import { z } from "astro/zod";
+
+  const schema = z.object({
+    email: z
+      .string()
+      .min(1, { message: "Email is required." })
+      .max(1000, { error: "Email must be shorter than 1000 characters." }),
+    message: z.string().min(1, { message: "Message is required." }).max(20000, {
+      error: "Message must be shorter than 20000 characters.",
+    }),
+    name: z
+      .string()
+      .min(1, { message: "Name is required." })
+      .max(1000, { error: "Name must be shorter than 1000 characters." }),
+    subject: z
+      .string()
+      .min(1, { message: "Subject is required." })
+      .max(1000, { error: "Subject must be shorter than 1000 characters." }),
+  });
+  type Form = z.infer<typeof schema>;
 
   function isHTMLElement(element: Element | null) {
     return !!element && element instanceof HTMLElement;
@@ -35,7 +53,7 @@ import Icon from "../components/Icon.astro";
   }
 
   function showFieldError(
-    field: string,
+    field: keyof Form,
     message: string = "Something went wrong",
   ) {
     const fieldErrorElement = document.querySelector(
@@ -72,26 +90,41 @@ import Icon from "../components/Icon.astro";
   const form = document.querySelector("form");
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     const formData = new FormData(form);
-    const { error } = await actions.sendEmail(formData);
+    const formEntries = formData.entries();
 
     hideAllErrors();
+    const validatedForm = schema.safeParse(Object.fromEntries(formEntries));
 
-    if (isInputError(error)) {
-      for (let field in error.fields) {
-        // @ts-expect-error this is ok, it's properly indexed
-        const fieldMessage = error.fields[field][0];
-        showFieldError(field, fieldMessage);
+    if (validatedForm.success === false) {
+      validatedForm.error.issues.forEach((issue) => {
+        if (issue.path.length > 0) {
+          const field = issue.path[0];
+          if (field) {
+            showFieldError(field as keyof Form, issue.message);
+          }
+        }
+      });
+      return;
+    }
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(
+          Array.from(formEntries) as [string, string][],
+        ),
+      });
+
+      showSuccess(form);
+    } catch (error) {
+      if (error) {
+        showError();
+        return;
       }
-      return;
     }
-
-    if (error) {
-      showError();
-      return;
-    }
-
-    showSuccess(form);
   });
 </script>
 
