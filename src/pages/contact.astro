@@ -91,11 +91,13 @@ import Icon from "../components/Icon.astro";
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(form);
-    const formEntries = formData.entries();
+    const submittedForm = event.target as HTMLFormElement;
+    const formData = new FormData(submittedForm);
 
     hideAllErrors();
-    const validatedForm = schema.safeParse(Object.fromEntries(formEntries));
+    const validatedForm = schema.safeParse(
+      Object.fromEntries([...formData.entries()]),
+    );
 
     if (validatedForm.success === false) {
       validatedForm.error.issues.forEach((issue) => {
@@ -114,7 +116,7 @@ import Icon from "../components/Icon.astro";
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(
-          Array.from(formEntries) as [string, string][],
+          Array.from(formData.entries()) as [string, string][],
         ),
       });
 
